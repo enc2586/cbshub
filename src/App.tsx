@@ -41,6 +41,8 @@ function App() {
     }
 
     setIsDarkTheme(store.get('darkTheme'))
+
+    console.log(process.env.REACT_APP_envTest)
   }, [])
 
   return (
