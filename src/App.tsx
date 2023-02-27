@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles'
 
 import { Toaster } from 'react-hot-toast'
 
-import theme from 'themes'
+import { lightTheme, darkTheme } from 'themes'
 
 import TopAppBar from 'components/TopAppBar'
 
@@ -13,36 +13,73 @@ import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SingUp'
 import Reveille from 'pages/Reveille'
 import { Box, Container } from '@mui/material'
-import ValidateAuth from 'pages/ValidateAuth'
 import PasswordReset from 'pages/PasswordReset'
 import ReveilleManagement from 'pages/ReveilleManagement'
 import AuthRequired from 'components/AuthRequired'
+import ResponsiveAppBar from 'components/ResponsiveAppBar'
+import SignOut from 'pages/SignOut'
+import React from 'react'
+
+import store from 'store2'
+import Lost from 'pages/Lost'
+import AboutPrivacy from 'pages/AboutPrivacy'
 
 function App() {
+  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
+  React.useEffect(() => {
+    if (isDarkTheme !== undefined) {
+      store.set('darkTheme', isDarkTheme)
+      setTheme(isDarkTheme ? darkTheme : lightTheme)
+    }
+  }, [isDarkTheme])
+
+  const [theme, setTheme] = React.useState(darkTheme)
+
+  React.useEffect(() => {
+    if (!store.has('darkTheme')) {
+      store.set('darkTheme', false)
+    }
+
+    setIsDarkTheme(store.get('darkTheme'))
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ background: theme.palette.background.default }}>
+      <div style={{ background: theme.palette.background.default, minHeight: '100vh' }}>
         <BrowserRouter>
-          <TopAppBar />
-          <Container>
-            <Box sx={{ height: '10px' }} />
+          <ResponsiveAppBar isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
+          <Container maxWidth='lg' sx={{ p: 2 }}>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/signin' element={<SignIn />} />
               <Route path='/signup' element={<SignUp />} />
+              <Route path='/signout' element={<SignOut />} />
               <Route path='/passwordreset' element={<PasswordReset />} />
-              <Route path='/validatetest' element={<ValidateAuth />} />
+              <Route path='/privacy' element={<AboutPrivacy />} />
               <Route element={<AuthRequired />}>
                 <Route path='/reveille' element={<Reveille />} />
               </Route>
               <Route element={<AuthRequired authority='reveilleManager' />}>
                 <Route path='/reveille/manage' element={<ReveilleManagement />} />
               </Route>
+              <Route path='/*' element={<Lost />} />
             </Routes>
           </Container>
         </BrowserRouter>
       </div>
-      <Toaster position='bottom-left' />
+      <Toaster
+        position='bottom-left'
+        toastOptions={
+          isDarkTheme
+            ? {
+                style: {
+                  background: '#1e1e1e',
+                  color: theme.palette.text.primary,
+                },
+              }
+            : undefined
+        }
+      />
     </ThemeProvider>
   )
 }

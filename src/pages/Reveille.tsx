@@ -26,6 +26,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Typography,
+  useMediaQuery,
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import BedtimeIcon from '@mui/icons-material/Bedtime'
@@ -87,6 +88,8 @@ function Reveille() {
   const user = useAuth() as User
   const userData = useAuthData()
   const navigate = useNavigate()
+
+  const isSmScreen = useMediaQuery('(max-width:600px)')
 
   React.useEffect(() => {
     ;(async function () {
@@ -282,6 +285,21 @@ function Reveille() {
             <Alert severity='error'>밴으로 인해 {banDue} 까지 신규 신청이 제한되었습니다.</Alert>
           ) : null}
         </Grid>
+        {isSmScreen ? (
+          <Grid item xs={12}>
+            <Button
+              variant='contained'
+              color='secondary'
+              fullWidth
+              startIcon={<VpnKeyIcon />}
+              onClick={() => {
+                navigate('/reveille/manage')
+              }}
+            >
+              기상음악 관리 패널 열기
+            </Button>
+          </Grid>
+        ) : null}
         <Grid item md={4} sm={6} xs={12}>
           <Paper>
             <Stack sx={{ p: 2 }} spacing={2}>
@@ -327,47 +345,49 @@ function Reveille() {
                     검색
                   </Button>
                 </Stack>
-                <Card sx={{ height: '365px', overflow: 'auto' }}>
-                  {isSearchLoading ? (
-                    <LinearProgress />
-                  ) : searchedMusics.length === 0 ? (
-                    lastQuery === '' ? (
-                      <Stack
-                        spacing={1}
-                        alignItems='center'
-                        justifyContent='center'
-                        sx={{ height: 'inherit' }}
-                      >
-                        <BedtimeIcon sx={{ fontSize: 40, color: 'text.disabled' }} />
-                        <Typography sx={{ color: 'text.disabled' }}>
-                          아직 검색어가 없네요 :-)
-                        </Typography>
-                      </Stack>
-                    ) : (
-                      <Stack
-                        spacing={1}
-                        alignItems='center'
-                        justifyContent='center'
-                        sx={{ height: 'inherit' }}
-                      >
-                        <PriorityHighIcon sx={{ fontSize: 40, color: 'text.disabled' }} />
-                        <Typography sx={{ color: 'text.disabled' }}>결과가 없어요 :-(</Typography>
-                      </Stack>
-                    )
-                  ) : (
-                    <List>
-                      {searchedMusics.map((item, index) => (
-                        <ListItemButton
-                          key={index}
-                          selected={selectedIndex === index}
-                          onClick={handleMusicClick(index)}
+                {isSmScreen && lastQuery === '' ? null : (
+                  <Card sx={{ height: '365px', overflow: 'auto' }}>
+                    {isSearchLoading ? (
+                      <LinearProgress />
+                    ) : searchedMusics.length === 0 ? (
+                      lastQuery === '' ? (
+                        <Stack
+                          spacing={1}
+                          alignItems='center'
+                          justifyContent='center'
+                          sx={{ height: 'inherit' }}
                         >
-                          <ListItemText primary={item.name} secondary={item.artist} />
-                        </ListItemButton>
-                      ))}
-                    </List>
-                  )}
-                </Card>
+                          <BedtimeIcon sx={{ fontSize: 40, color: 'text.disabled' }} />
+                          <Typography sx={{ color: 'text.disabled' }}>
+                            아직 검색어가 없네요 :-)
+                          </Typography>
+                        </Stack>
+                      ) : (
+                        <Stack
+                          spacing={1}
+                          alignItems='center'
+                          justifyContent='center'
+                          sx={{ height: 'inherit' }}
+                        >
+                          <PriorityHighIcon sx={{ fontSize: 40, color: 'text.disabled' }} />
+                          <Typography sx={{ color: 'text.disabled' }}>결과가 없어요 :-(</Typography>
+                        </Stack>
+                      )
+                    ) : (
+                      <List>
+                        {searchedMusics.map((item, index) => (
+                          <ListItemButton
+                            key={index}
+                            selected={selectedIndex === index}
+                            onClick={handleMusicClick(index)}
+                          >
+                            <ListItemText primary={item.name} secondary={item.artist} />
+                          </ListItemButton>
+                        ))}
+                      </List>
+                    )}
+                  </Card>
+                )}
               </Stack>
             </Stack>
           </Paper>
@@ -519,19 +539,21 @@ function Reveille() {
             </Stack>
           </Paper>
         </Grid>
-        <Grid item xs={12}>
-          <Button
-            variant='contained'
-            color='secondary'
-            fullWidth
-            startIcon={<VpnKeyIcon />}
-            onClick={() => {
-              navigate('/reveille/manage')
-            }}
-          >
-            기상음악 관리 패널 열기
-          </Button>
-        </Grid>
+        {isSmScreen ? null : (
+          <Grid item xs={12}>
+            <Button
+              variant='contained'
+              color='secondary'
+              fullWidth
+              startIcon={<VpnKeyIcon />}
+              onClick={() => {
+                navigate('/reveille/manage')
+              }}
+            >
+              기상음악 관리 패널 열기
+            </Button>
+          </Grid>
+        )}
       </Grid>
       <Dialog open={isDialogOpen} onClose={handleApplyDialogClose}>
         <DialogTitle>

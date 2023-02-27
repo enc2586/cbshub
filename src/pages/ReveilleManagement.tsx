@@ -20,13 +20,14 @@ import {
   ListItemText,
   Paper,
   Slider,
+  Stack,
   TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import { Stack } from '@mui/system'
+
 import React from 'react'
 
 import RefreshIcon from '@mui/icons-material/Refresh'
@@ -38,6 +39,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import TaskAltIcon from '@mui/icons-material/TaskAlt'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
 import SettingsIcon from '@mui/icons-material/Settings'
+import DiscFullIcon from '@mui/icons-material/DiscFull'
 
 import {
   fetchReveillesQueue,
@@ -64,7 +66,6 @@ import { CensoredMusic, Dormitory, PlayedMusic, QueuedMusic, ReveilleConfig } fr
 
 function ReveilleManagement() {
   const userData = useAuthData()
-
   const reveilleConfigRef = doc(db, 'reveille', 'configuration')
 
   React.useEffect(() => {
@@ -373,16 +374,6 @@ function ReveilleManagement() {
                 <ToggleButton value='chungwoon'>청운</ToggleButton>
                 <ToggleButton value='sareum'>사름</ToggleButton>
               </ToggleButtonGroup>
-              <Button
-                disabled={isQueueLoading}
-                variant='outlined'
-                size='small'
-                sx={{ height: '30px' }}
-                startIcon={<RefreshIcon />}
-                onClick={handleLoadClick}
-              >
-                새로고침
-              </Button>
               <IconButton size='small' onClick={handleSettingsClick}>
                 <SettingsIcon />
               </IconButton>
@@ -390,84 +381,118 @@ function ReveilleManagement() {
           </Stack>
           <Box m={-2}>
             <Grid container direction='row-reverse' spacing={2}>
-              <Grid item xs={3}>
-                <Stack spacing={2}>
-                  <Button
-                    onClick={handleDailyCopyAndPlay}
-                    variant='contained'
-                    startIcon={<FlashOnIcon />}
-                  >
-                    첫 {reveilleConfig.playsPerDay[dormitory]}개 제목 복사 후 재생처리
-                  </Button>
-                  <Divider />
-                  <Button
-                    variant='outlined'
-                    startIcon={checked.length === 0 ? <SelectAllIcon /> : <DeselectIcon />}
-                    onClick={handleSelectAllClick}
-                  >
-                    모두 {checked.length === 0 ? '선택' : '해제'}
-                  </Button>
-                  <Button
-                    variant='outlined'
-                    startIcon={<HighlightAltIcon />}
-                    onClick={handleDailySelect}
-                  >
-                    첫 {reveilleConfig.playsPerDay[dormitory]}개 선택
-                  </Button>
-                  <Button
-                    variant='contained'
-                    startIcon={<ContentCopyIcon />}
-                    onClick={handleCopyClick}
-                  >
-                    선택 항목 제목 복사
-                  </Button>
-                  <Button
-                    variant='contained'
-                    startIcon={<TaskAltIcon />}
-                    onClick={handlePlayedClick}
-                  >
-                    선택 항목 재생처리
-                  </Button>
-                  <Button
-                    variant='contained'
-                    startIcon={<AcUnitIcon />}
-                    color='error'
-                    onClick={handleCensorClick}
-                  >
-                    선택 항목 검열처리
-                  </Button>
-                </Stack>
+              <Grid item sm={3} xs={12}>
+                <Grid container justifyContent='center' alignItems='stretch' spacing={1}>
+                  <Grid item xs={12}>
+                    <Button
+                      onClick={handleDailyCopyAndPlay}
+                      variant='contained'
+                      startIcon={<FlashOnIcon />}
+                      fullWidth
+                    >
+                      첫 {reveilleConfig.playsPerDay[dormitory]}개 제목 복사 후 재생처리
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={6} sm={12}>
+                    <Button
+                      variant='outlined'
+                      startIcon={checked.length === 0 ? <SelectAllIcon /> : <DeselectIcon />}
+                      onClick={handleSelectAllClick}
+                      fullWidth
+                    >
+                      모두 {checked.length === 0 ? '선택' : '해제'}
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6} sm={12}>
+                    <Button
+                      variant='outlined'
+                      startIcon={<HighlightAltIcon />}
+                      onClick={handleDailySelect}
+                      fullWidth
+                    >
+                      첫 {reveilleConfig.playsPerDay[dormitory]}개 선택
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6} sm={12}>
+                    <Button
+                      variant='contained'
+                      startIcon={<ContentCopyIcon />}
+                      onClick={handleCopyClick}
+                      fullWidth
+                    >
+                      제목 복사
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6} sm={12}>
+                    <Button
+                      variant='contained'
+                      startIcon={<TaskAltIcon />}
+                      onClick={handlePlayedClick}
+                      fullWidth
+                    >
+                      재생처리
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      variant='contained'
+                      startIcon={<AcUnitIcon />}
+                      color='error'
+                      onClick={handleCensorClick}
+                      fullWidth
+                    >
+                      검열처리
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item xs={9}>
+              <Grid item sm={9} xs={12}>
                 <Card>
                   <Box sx={{ height: '4px' }}>{isQueueLoading ? <LinearProgress /> : null}</Box>
                   <Box sx={{ height: '600px', overflow: 'auto' }}>
                     <List dense>
-                      {queue.map((item, index) => {
-                        const formatter = new Intl.DateTimeFormat('ko-KR', {
-                          month: 'long',
-                          day: 'numeric',
-                          hour: 'numeric',
-                          minute: 'numeric',
-                          hour12: false,
-                          timeZone: 'Asia/Seoul',
+                      {queue.length === 0 ? (
+                        <Stack
+                          spacing={1}
+                          alignItems='center'
+                          justifyContent='center'
+                          sx={{ height: '500px' }}
+                        >
+                          <DiscFullIcon sx={{ fontSize: 40, color: 'text.disabled' }} />
+                          <Typography sx={{ color: 'text.disabled' }}>
+                            저런.. 한 곡도 없네요
+                          </Typography>
+                        </Stack>
+                      ) : (
+                        queue.map((item, index) => {
+                          const formatter = new Intl.DateTimeFormat('ko-KR', {
+                            month: 'long',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: false,
+                            timeZone: 'Asia/Seoul',
+                          })
+                          const secondaryText =
+                            item.userName + ' · ' + formatter.format(item.appliedOn)
+                          return (
+                            <ListItem disablePadding key={index}>
+                              <ListItemButton onClick={handleMusicToggle(index)}>
+                                <ListItemIcon>
+                                  <Checkbox checked={checked.indexOf(index) !== -1} disableRipple />
+                                </ListItemIcon>
+                                <ListItemText
+                                  primary={item.title + ' · ' + item.artist}
+                                  secondary={secondaryText}
+                                />
+                              </ListItemButton>
+                            </ListItem>
+                          )
                         })
-                        const secondaryText =
-                          item.userName + ' · ' + formatter.format(item.appliedOn)
-                        return (
-                          <ListItem disablePadding key={index}>
-                            <ListItemButton onClick={handleMusicToggle(index)}>
-                              <ListItemIcon>
-                                <Checkbox checked={checked.indexOf(index) !== -1} disableRipple />
-                              </ListItemIcon>
-                              <ListItemText
-                                primary={item.title + ' · ' + item.artist}
-                                secondary={secondaryText}
-                              />
-                            </ListItemButton>
-                          </ListItem>
-                        )
-                      })}
+                      )}
                     </List>
                   </Box>
                 </Card>
@@ -516,7 +541,7 @@ function ReveilleManagement() {
         <DialogActions>
           <Button onClick={() => setCensorAskDialogOpen(false)}>취소</Button>
           <Button onClick={handleCensorAskProcess} color='error' variant='contained'>
-            되돌릴 수 없는 작업임을 확인했습니다.
+            되돌릴 수 없음을 확인함
           </Button>
         </DialogActions>
       </Dialog>
@@ -573,7 +598,7 @@ function ReveilleManagement() {
       </Dialog>
       <Dialog open={configOpen} onClose={() => setConfigOpen(false)}>
         <DialogContent>
-          <Stack spacing={3}>
+          <Stack spacing={4}>
             <Stack spacing={1}>
               <Typography variant='h6'>사용자 음악 신청 상한</Typography>
               <Slider
@@ -635,7 +660,7 @@ function ReveilleManagement() {
                 />
               </Stack>
             </Stack>
-            <DialogContentText>설정 변경 후 반드시 저장 버튼을 누르세요.</DialogContentText>
+            <DialogContentText>적용 버튼을 눌러야 적용됩니다.</DialogContentText>
           </Stack>
         </DialogContent>
         <DialogActions>
