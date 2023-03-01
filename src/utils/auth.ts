@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import toast from 'react-hot-toast'
 import { UserData } from 'types/auth'
 
-const fetchUserData = async (uid: string) => {
+export const fetchUserData = async (uid: string) => {
   const userDataRef = doc(db, 'user', uid)
   const result = await getDoc(userDataRef)
   if (result.exists()) {
@@ -16,5 +16,3 @@ const fetchUserData = async (uid: string) => {
     return undefined
   }
 }
-
-export { fetchUserData }

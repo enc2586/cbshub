@@ -1,28 +1,26 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
-// import React from 'react'
+import { Container } from '@mui/material'
+import Reveille from 'pages/Reveille'
+import * as React from 'react'
 
 import { Toaster } from 'react-hot-toast'
 
 import { lightTheme, darkTheme } from 'themes'
 
-import TopAppBar from 'components/TopAppBar'
-
 import Home from 'pages/Home'
 import SignIn from 'pages/SignIn'
-import SignUp from 'pages/SingUp'
-import Reveille from 'pages/Reveille'
-import { Box, Container } from '@mui/material'
+import SignUp from 'pages/SignUp'
 import PasswordReset from 'pages/PasswordReset'
 import ReveilleManagement from 'pages/ReveilleManagement'
 import AuthRequired from 'components/AuthRequired'
 import ResponsiveAppBar from 'components/ResponsiveAppBar'
 import SignOut from 'pages/SignOut'
-import React from 'react'
 
 import store from 'store2'
 import Lost from 'pages/Lost'
 import AboutPrivacy from 'pages/AboutPrivacy'
+import Follower from 'components/Follower'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -41,8 +39,6 @@ function App() {
     }
 
     setIsDarkTheme(store.get('darkTheme'))
-
-    console.log(process.env.REACT_APP_envTest)
   }, [])
 
   return (
@@ -68,6 +64,7 @@ function App() {
             </Routes>
           </Container>
         </BrowserRouter>
+        {/* <Follower /> */}
       </div>
       <Toaster
         position='bottom-left'

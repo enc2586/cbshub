@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   Backdrop,
   Box,
@@ -25,12 +26,9 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Typography,
+  Grid,
 } from '@mui/material'
-import Grid from '@mui/material/Grid'
 
-import React from 'react'
-
-import RefreshIcon from '@mui/icons-material/Refresh'
 import SelectAllIcon from '@mui/icons-material/SelectAll'
 import DeselectIcon from '@mui/icons-material/Deselect'
 import HighlightAltIcon from '@mui/icons-material/HighlightAlt'
@@ -41,17 +39,11 @@ import AcUnitIcon from '@mui/icons-material/AcUnit'
 import SettingsIcon from '@mui/icons-material/Settings'
 import DiscFullIcon from '@mui/icons-material/DiscFull'
 
-import {
-  fetchReveillesQueue,
-  fetchReveillesPlayed,
-  fetchReveillesCensored,
-} from 'services/reveilles'
 import useAuthData from 'hooks/useAuthData'
-import { getDefaultDormitory, getReveilleConfig } from 'utils/reveille'
+import { fetchReveillesQueue, getDefaultDormitory, getReveilleConfig } from 'utils/reveille'
 import toast from 'react-hot-toast'
 import { db } from 'configs/firebase'
 import {
-  collection,
   doc,
   FieldValue,
   increment,
@@ -60,7 +52,7 @@ import {
   updateDoc,
   writeBatch,
 } from 'firebase/firestore'
-import { CensoredMusic, Dormitory, PlayedMusic, QueuedMusic, ReveilleConfig } from 'types/reveille'
+import { Dormitory, QueuedMusic, ReveilleConfig } from 'types/reveille'
 
 // TODO: 빠르게 기숙사를 바꿨을 때 제대로 작동하나 확인
 

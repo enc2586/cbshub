@@ -1,6 +1,14 @@
-import { Paper, Stack, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
+import {
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+  TableContainer,
+  TableHead,
+} from '@mui/material'
 
 function PrivacyAgreement() {
   return (

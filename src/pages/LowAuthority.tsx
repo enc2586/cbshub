@@ -1,27 +1,26 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Button, Paper, Stack, Typography } from '@mui/material'
 
-function Lost() {
+function LowAuthority({ needed }: { needed: string }) {
   const navigate = useNavigate()
-  const location = useLocation()
 
   return (
     <Paper sx={{ p: 2 }}>
       <Stack spacing={2}>
-        <Typography variant='h4'>길을 잃었어요...</Typography>
+        <Typography variant='h4'>권한이 부족해요...</Typography>
         <Stack direction='row' alignItems='center' spacing={1}>
           <Paper sx={{ p: 0.5 }}>
             <Typography>
-              <b>{location.pathname}</b>
+              <b>{needed}</b>
             </Typography>
           </Paper>
-          <Typography>같은 페이지는 존재하지 않아요.</Typography>
+          <Typography>권한이 필요해요. 관리자에게 문의해주세요.</Typography>
         </Stack>
         <Stack sx={{ width: 'inherit' }} alignItems='center'>
           <img
-            src='images\lost.jpg'
-            style={{ width: '100%', maxWidth: '700px', borderRadius: '10px' }}
+            src='images\lowauthority.jpg'
+            style={{ width: '100%', maxWidth: '500px', borderRadius: '10px' }}
           />
         </Stack>
         <Stack direction='row-reverse' spacing={2}>
@@ -35,4 +34,4 @@ function Lost() {
   )
 }
 
-export default Lost
+export default LowAuthority

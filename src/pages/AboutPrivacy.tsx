@@ -1,4 +1,5 @@
 import { Paper, Stack, Typography } from '@mui/material'
+
 import PrivacyAgreement from 'components/PrivacyAgreement'
 import PrivacyTerms from 'components/PrivacyTerms'
 

@@ -1,10 +1,7 @@
-import { db } from 'configs/firebase'
-import { doc, getDoc } from 'firebase/firestore'
+import * as React from 'react'
 import useAuth from 'hooks/useAuth'
-import React from 'react'
-import { toast } from 'react-hot-toast'
-import { UserData } from 'types/auth'
 import { fetchUserData } from 'utils/auth'
+import { UserData } from 'types/auth'
 
 function useAuthData() {
   const user = useAuth()

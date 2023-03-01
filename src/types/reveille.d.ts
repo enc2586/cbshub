@@ -1,7 +1,6 @@
-import { FieldValue } from 'firebase/firestore'
-type Dormitory = 'sareum' | 'chungwoon'
+export type Dormitory = 'sareum' | 'chungwoon'
 
-type QueuedMusic = {
+export type QueuedMusic = {
   id?: string
   title: string
   artist: string
@@ -10,11 +9,11 @@ type QueuedMusic = {
   appliedOn: Date
 }
 
-type PlayedMusic = QueuedMusic & { playedOn: Date }
+export type PlayedMusic = QueuedMusic & { playedOn: Date }
 
-type CensoredMusic = QueuedMusic & { censoredOn: Date; reason: string }
+export type CensoredMusic = QueuedMusic & { censoredOn: Date; reason: string }
 
-type ReveilleConfig = {
+export type ReveilleConfig = {
   bannedUsers: { [k: string]: Timestamp }
   maxReveilleApplies: { default: number; [k: string]: number }
   playsPerDay: { sareum: number; chungwoon: number }

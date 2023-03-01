@@ -1,6 +1,8 @@
 import { useLocation, Outlet, Navigate } from 'react-router-dom'
-import ValidateAuth from 'pages/ValidateAuth'
 import useAuthData from 'hooks/useAuthData'
+
+import ValidateAuth from 'pages/ValidateAuth'
+import LowAuthority from 'pages/LowAuthority'
 
 function AuthRequired({ authority }: { authority?: string }) {
   const userData = useAuthData()
@@ -18,8 +20,7 @@ function AuthRequired({ authority }: { authority?: string }) {
       ) {
         return <Outlet />
       } else {
-        return <Navigate to='/signUp' replace />
-        // TODO: 권한 부족 페이지
+        return <LowAuthority needed={authority} />
       }
     } else {
       return <Outlet />

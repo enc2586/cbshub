@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import { Alert, Box, Button, Grid, Paper, Stack, Typography } from '@mui/material'
 
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic'
@@ -13,7 +15,6 @@ import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate
 import EventIcon from '@mui/icons-material/Event'
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import CloudIcon from '@mui/icons-material/Cloud'
-import { useNavigate } from 'react-router-dom'
 
 function Home() {
   const navigate = useNavigate()

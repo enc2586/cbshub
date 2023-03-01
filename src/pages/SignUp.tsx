@@ -11,7 +11,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   DialogActions,
 } from '@mui/material'
 import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth'
@@ -19,23 +18,13 @@ import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth'
 import toast from 'react-hot-toast'
 
 import { auth, db } from 'configs/firebase'
-import React, { useEffect } from 'react'
+import * as React from 'react'
 import Divider from '@mui/material/Divider'
 import { collection, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
 import { useNavigate } from 'react-router-dom'
 import PrivacyAgreement from 'components/PrivacyAgreement'
-
-type userData = {
-  name: string
-  email: string
-  classNo: number
-  grade: number
-  numberInClass: number
-  sex: boolean
-  reveillesApplied: number
-  agreedTermsAt: any
-}
+import { UserData } from 'types/auth'
 
 function SignUp() {
   const navigate = useNavigate()
@@ -80,7 +69,7 @@ function SignUp() {
     toast.loading('회원정보를 등록하고 있어요', { id: signUpToastId })
     const uid = userCredential!.user.uid
     const newUserRef = doc(db, 'user', uid)
-    const newUserData: userData = {
+    const newUserData: UserData = {
       name: values.name,
       email: values.email,
       classNo: studentData.classNo,
@@ -203,7 +192,7 @@ function SignUp() {
     number: 0,
     helperText: '?학년 ?반 ?번',
   })
-  useEffect(() => {
+  React.useEffect(() => {
     const sid = Number(values.sid) * 10 ** (4 - values.sid.length)
 
     let grade, classNo, number

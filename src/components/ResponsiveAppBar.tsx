@@ -1,25 +1,28 @@
 import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
-import LogoutIcon from '@mui/icons-material/Logout'
-import Container from '@mui/material/Container'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness6Icon from '@mui/icons-material/Brightness6'
-
-import DirectionsRunSharpIcon from '@mui/icons-material/DirectionsRunSharp'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from 'hooks/useAuth'
-import { CircularProgress, ListItemIcon, Stack } from '@mui/material'
+
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import LogoutIcon from '@mui/icons-material/Logout'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import Brightness6Icon from '@mui/icons-material/Brightness6'
+import DirectionsRunSharpIcon from '@mui/icons-material/DirectionsRunSharp'
 
 const pages: { [k: string]: string } = {
   '서비스 소개': '/introduction',
@@ -214,31 +217,16 @@ function ResponsiveAppBar({
                 </ListItemIcon>
                 <Typography textAlign='center'>내 계정</Typography>
               </MenuItem>
-              {isDarkTheme ? (
-                <MenuItem
-                  onClick={() => {
-                    setIsDarkTheme(false)
-                    handleCloseUserMenu()
-                  }}
-                >
-                  <ListItemIcon>
-                    <Brightness6Icon fontSize='small' />
-                  </ListItemIcon>
-                  <Typography textAlign='center'>다크 모드 끄기</Typography>
-                </MenuItem>
-              ) : (
-                <MenuItem
-                  onClick={() => {
-                    setIsDarkTheme(true)
-                    handleCloseUserMenu()
-                  }}
-                >
-                  <ListItemIcon>
-                    <Brightness4Icon fontSize='small' />
-                  </ListItemIcon>
-                  <Typography textAlign='center'>다크 모드 켜기</Typography>
-                </MenuItem>
-              )}
+              <MenuItem
+                onClick={() => {
+                  setIsDarkTheme(!isDarkTheme)
+                }}
+              >
+                <ListItemIcon>
+                  <Brightness6Icon fontSize='small' />
+                </ListItemIcon>
+                <Typography textAlign='center'>다크 모드 토글</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

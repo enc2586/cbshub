@@ -1,8 +1,8 @@
-import { Timestamp } from 'firebase/firestore'
+import { FieldValue } from 'firebase/firestore'
 
-type UserData = {
+export type UserData = {
   authority?: string[]
-  agreedTermsAt: Date | Timestamp
+  agreedTermsAt: Date | FieldValue
   email: string
   name: string
   sex: boolean

@@ -1,8 +1,33 @@
-import React from 'react'
+import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
+import useAuth from 'hooks/useAuth'
+import useAuthData from 'hooks/useAuthData'
+import { auth, db } from 'configs/firebase'
+import {
+  collection,
+  doc,
+  DocumentData,
+  increment,
+  serverTimestamp,
+  setDoc,
+  writeBatch,
+} from 'firebase/firestore'
+import {
+  fetchReveillesQueue,
+  fetchReveillesPlayed,
+  fetchReveillesCensored,
+  getDefaultDormitory,
+  getReveilleConfig,
+} from 'utils/reveille'
+import { musicSearchAPI } from 'services/musieSearchAPI'
+import { fetchUserData } from 'utils/auth'
+import { CensoredMusic, Dormitory, PlayedMusic, QueuedMusic } from 'types/reveille'
+import { UserData } from 'types/auth'
+import { User } from 'firebase/auth'
 
 import {
   Alert,
-  Badge,
   Box,
   Button,
   Card,
@@ -26,8 +51,10 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Typography,
+  Stack,
   useMediaQuery,
 } from '@mui/material'
+
 import SearchIcon from '@mui/icons-material/Search'
 import BedtimeIcon from '@mui/icons-material/Bedtime'
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh'
@@ -37,37 +64,6 @@ import DiscFullIcon from '@mui/icons-material/DiscFull'
 import DoneAllIcon from '@mui/icons-material/DoneAll'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
 import VpnKeyIcon from '@mui/icons-material/VpnKey'
-
-import { Stack } from '@mui/system'
-import { musicSearchAPI } from 'services/musieSearchAPI'
-import {
-  collection,
-  doc,
-  DocumentData,
-  getDoc,
-  getDocs,
-  increment,
-  orderBy,
-  query,
-  serverTimestamp,
-  setDoc,
-  writeBatch,
-} from 'firebase/firestore'
-import { auth, db } from 'configs/firebase'
-import { toast } from 'react-hot-toast'
-import { User } from 'firebase/auth'
-import { CensoredMusic, Dormitory, PlayedMusic, QueuedMusic } from 'types/reveille'
-import useAuthData from 'hooks/useAuthData'
-import { getDefaultDormitory, getReveilleConfig } from 'utils/reveille'
-import {
-  fetchReveillesQueue,
-  fetchReveillesPlayed,
-  fetchReveillesCensored,
-} from 'services/reveilles'
-import useAuth from 'hooks/useAuth'
-import { fetchUserData } from 'utils/auth'
-import { UserData } from 'types/auth'
-import { useNavigate } from 'react-router-dom'
 
 type musicInfo = {
   name: string
