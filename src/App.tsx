@@ -21,6 +21,7 @@ import store from 'store2'
 import Lost from 'pages/Lost'
 import AboutPrivacy from 'pages/AboutPrivacy'
 import Follower from 'components/Follower'
+import Notice from 'components/Notice'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -64,6 +65,7 @@ function App() {
             </Routes>
           </Container>
         </BrowserRouter>
+        <Notice />
         {/* <Follower /> */}
       </div>
       <Toaster
