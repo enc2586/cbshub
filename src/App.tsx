@@ -1,8 +1,8 @@
+import * as React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
 import { Container } from '@mui/material'
 import Reveille from 'pages/Reveille'
-import * as React from 'react'
 
 import { Toaster } from 'react-hot-toast'
 
