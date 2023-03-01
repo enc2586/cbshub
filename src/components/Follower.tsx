@@ -40,7 +40,7 @@ function Follower() {
           position: 'absolute',
           left: position.x + 1,
           top: position.y + 1,
-          transition: 'all 0.2s ease-out',
+          transition: 'all 0.6s ease-out',
         }}
       >
         <Button variant='contained' size='small'>
@@ -52,7 +52,7 @@ function Follower() {
           position: 'absolute',
           left: position.x + 1,
           top: position.y + 1,
-          transition: 'all 0.5s ease-out',
+          transition: 'all 0.8s ease-out',
         }}
       >
         <Button variant='contained' size='small'>
@@ -64,7 +64,7 @@ function Follower() {
           position: 'absolute',
           left: position.x + 1,
           top: position.y + 1,
-          transition: 'all 0.8s ease-out',
+          transition: 'all 1s ease-out',
         }}
       >
         <Button variant='contained' size='small'>

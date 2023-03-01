@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-
-import ReactGA from 'react-ga4'
-
 import 'index.css'
 
+import { InitializeGoogleAnalytics } from 'utils/google-analytics'
+
 if (!window.location.href.includes('localhost')) {
-  const measurementId = process.env.REACT_APP_measurementId as string
-  ReactGA.initialize(measurementId)
+  InitializeGoogleAnalytics()
+  console.log('GA initialized.')
 } else {
   console.log('Under local development environment. Analytics are off.')
 }

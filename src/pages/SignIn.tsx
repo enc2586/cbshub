@@ -1,10 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 import toast from 'react-hot-toast'
 
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from 'configs/firebase'
 
-import BadgeIcon from '@mui/icons-material/Badge'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import PasswordIcon from '@mui/icons-material/Password'
 import { Stack, Typography, TextField, Button, Paper, Divider, Alert } from '@mui/material'

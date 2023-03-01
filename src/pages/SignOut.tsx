@@ -1,6 +1,6 @@
 import { auth } from 'configs/firebase'
 import { signOut } from 'firebase/auth'
-import React from 'react'
+import * as React from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
