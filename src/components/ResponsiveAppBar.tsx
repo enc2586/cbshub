@@ -166,14 +166,6 @@ function ResponsiveAppBar({
               </Tooltip>
             ) : (
               <Stack direction='row'>
-                <Button
-                  color='inherit'
-                  onClick={() => {
-                    setIsDarkTheme(!isDarkTheme)
-                  }}
-                >
-                  다크 모드 토글
-                </Button>
                 <Button color='inherit' onClick={() => navigate('/signin')}>
                   로그인
                 </Button>
@@ -225,7 +217,7 @@ function ResponsiveAppBar({
                 <ListItemIcon>
                   <Brightness6Icon fontSize='small' />
                 </ListItemIcon>
-                <Typography textAlign='center'>다크 모드 토글</Typography>
+                <Typography textAlign='center'>다크 모드</Typography>
               </MenuItem>
             </Menu>
           </Box>

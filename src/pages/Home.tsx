@@ -31,7 +31,7 @@ function Home() {
           <Stack spacing={2}>
             <Typography variant='h5'>제공하는 서비스</Typography>
             <Box m={-2}>
-              <Grid container spacing={2} columns={{ xs: 2, md: 4 }}>
+              <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 4 }}>
                 <Grid item xs={1}>
                   <Button
                     size='large'
@@ -81,7 +81,7 @@ function Home() {
           <Stack spacing={2}>
             <Typography variant='h5'>교내 생활 관련</Typography>
             <Box m={-2}>
-              <Grid container spacing={2} columns={{ xs: 2, md: 4 }}>
+              <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 4 }}>
                 <Grid item xs={1}>
                   <Button
                     size='large'
