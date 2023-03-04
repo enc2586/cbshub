@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# cbshub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![visit cbshub](https://img.shields.io/badge/visit-cbshub-purple.svg?style=flat-square)](https://cbshub.pages.dev)
 
-## Available Scripts
+충북과학고등학교의 편리한 기상음악 신청을 위해 2022년 4월경부터 개시된 서비스입니다.
 
-In the project directory, you can run:
+회원가입된 학생들은 서비스에 로그인하여 전 세계의 음악들을 검색하고 신청하거나, 이미 신청했던 음악을 취소할 수 있습니다. 음악의 신청자는 익명으로 표시됩니다. 기상음악 관리 권한이 있는 학생들은 큐의 음악들을 재생처리 또는 검열처리할 수 있으며, 검열처리 시 해당 학생을 최대 14일간 밴할 수 있습니다.
 
-### `npm start`
+회원 권한이 필요하지 않은 홈 페이지에서는 교내 생활에 유용한 사이트들로 연결되는 링크들을 볼 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> WORKFLOW(자습 신청 예약) 서비스는 자습신청 사이트의 리뉴얼로 인해 2023년부로 종료되었습니다. 아이디/비밀번호 데이터는 안전히 폐기되었습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Table of Contents
 
-### `npm test`
+- [cbshub](#cbshub)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Installation](#installation)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Background
 
-### `npm run build`
+과거 기상음악 신청 방식은 복도에 있는 칠판에 학번과 함께 음악을 적는 것이었습니다. 기상음악을 신청하기 위해 복도 칠판까지 가는 것은 귀찮은 일이며, 신청된 음악이 마음에 들지 않는 누군가가 남의 음악을 지우거나 학교에서 재생할 수 없는 수위의 음악을 신청하는 경우도 있었습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+처음에는 기상음악 신청 과정에서의 문제와 불편함을 해결하고자 시작한 프로젝트였지만, 더 나아가 교내 생활 전반에 도움을 줄 수 있는 사이트로 발전하는 것이 목표입니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2022년에는 불편한 자습신청 과정을 예약을 통해 자동화하는 서비스인 WORKFLOW를 제공했으나, 자율학습 신청 사이트의 리뉴얼로 인해 2023년부로 종료되었습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+reactJS로 프론트를 개발했으며, 백엔드는 BaaS인 Firebase를 활용합니다. Cloudflare Pages를 통해 페이지를 서빙하며, Github과의 연결 설정을 통해 master 브랜치로의 커밋과 동시에 빌드를 트리거합니다.
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+이 프로젝트는 [node](http://nodejs.org)와 [npm](https://npmjs.com)을 활용합니다. 로컬에 미리 설치하셔야 실행할 수 있습니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+$ npm i
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+또한 .env 에 firebase와 lastFM의 API 키 값을 입력해야 합니다.
