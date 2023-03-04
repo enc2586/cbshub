@@ -25,7 +25,7 @@
 
 2022년에는 불편한 자습신청 과정을 예약을 통해 자동화하는 서비스인 WORKFLOW를 제공했으나, 자율학습 신청 사이트의 리뉴얼로 인해 2023년부로 종료되었습니다.
 
-reactJS로 프론트를 개발했으며, 백엔드는 BaaS인 Firebase를 활용합니다. Cloudflare Pages를 통해 페이지를 서빙하며, Github과의 연결 설정을 통해 master 브랜치로의 커밋과 동시에 빌드를 트리거합니다.
+reactJS로 프론트를 개발했으며, 백엔드는 BaaS인 Firebase를 활용합니다. Cloudflare Pages를 통해 페이지를 서빙하며, Github과의 연결 설정을 통해 master 브랜치로의 푸시과 동시에 빌드를 트리거합니다.
 
 ## Installation
 
