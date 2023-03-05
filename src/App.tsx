@@ -22,6 +22,7 @@ import Lost from 'pages/Lost'
 import AboutPrivacy from 'pages/AboutPrivacy'
 import Follower from 'components/Follower'
 import Notice from 'components/Notice'
+import Introduction from 'pages/Introduction'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -55,6 +56,7 @@ function App() {
               <Route path='/signout' element={<SignOut />} />
               <Route path='/passwordreset' element={<PasswordReset />} />
               <Route path='/privacy' element={<AboutPrivacy />} />
+              <Route path='/Introduction' element={<Introduction />} />
               <Route element={<AuthRequired />}>
                 <Route path='/reveille' element={<Reveille />} />
               </Route>
