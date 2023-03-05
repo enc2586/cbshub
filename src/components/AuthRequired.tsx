@@ -14,10 +14,7 @@ function AuthRequired({ authority }: { authority?: string }) {
     return <Navigate to='/signin' state={{ from: location }} replace />
   } else {
     if (authority !== undefined) {
-      if (
-        userData.authority !== undefined &&
-        (userData.authority.includes(authority) || userData.authority.includes('administrator'))
-      ) {
+      if (userData.authority.includes(authority) || userData.authority.includes('administrator')) {
         return <Outlet />
       } else {
         return <LowAuthority needed={authority} />

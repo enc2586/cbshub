@@ -1,7 +1,7 @@
 import { FieldValue } from 'firebase/firestore'
 
 export type UserData = {
-  authority?: string[]
+  authority: string[]
   agreedTermsAt: Date | FieldValue
   email: string
   name: string
