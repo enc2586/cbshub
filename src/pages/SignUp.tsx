@@ -70,6 +70,7 @@ function SignUp() {
     const uid = userCredential!.user.uid
     const newUserRef = doc(db, 'user', uid)
     const newUserData: UserData = {
+      authority: ['student'],
       name: values.name,
       email: values.email,
       classNo: studentData.classNo,
