@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { Button, Paper, Stack, Typography } from '@mui/material'
 
+import lostImage from 'images/lost.jpg'
+
 function Lost() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -19,10 +21,7 @@ function Lost() {
           <Typography>같은 페이지는 존재하지 않아요.</Typography>
         </Stack>
         <Stack sx={{ width: 'inherit' }} alignItems='center'>
-          <img
-            src='images\lost.jpg'
-            style={{ width: '100%', maxWidth: '700px', borderRadius: '10px' }}
-          />
+          <img src={lostImage} style={{ width: '100%', maxWidth: '700px', borderRadius: '10px' }} />
         </Stack>
         <Stack direction='row-reverse' spacing={2}>
           <Button variant='contained' onClick={() => navigate(-1)}>

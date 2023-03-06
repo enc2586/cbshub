@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { Button, Paper, Stack, Typography } from '@mui/material'
 
+import lowAuthorityImage from 'images/lowauthority.png'
+
 function LowAuthority({ needed }: { needed: string }) {
   const navigate = useNavigate()
 
@@ -19,7 +21,7 @@ function LowAuthority({ needed }: { needed: string }) {
         </Stack>
         <Stack sx={{ width: 'inherit' }} alignItems='center'>
           <img
-            src='images\lowauthority.jpg'
+            src={lowAuthorityImage}
             style={{ width: '100%', maxWidth: '500px', borderRadius: '10px' }}
           />
         </Stack>
