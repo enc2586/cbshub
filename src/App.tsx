@@ -22,6 +22,7 @@ import Lost from 'pages/Lost'
 import AboutPrivacy from 'pages/AboutPrivacy'
 import Follower from 'components/Follower'
 import Notice from 'components/Notice'
+import LowAuthority from 'pages/LowAuthority'
 import Introduction from 'pages/Introduction'
 
 function App() {
@@ -62,6 +63,9 @@ function App() {
               </Route>
               <Route element={<AuthRequired authority='reveilleManager' />}>
                 <Route path='/reveille/manage' element={<ReveilleManagement />} />
+              </Route>
+              <Route element={<AuthRequired authority='admin' />}>
+                <Route path='/test/lowauthority' element={<LowAuthority needed='admin' />} />
               </Route>
               <Route path='/*' element={<Lost />} />
             </Routes>
