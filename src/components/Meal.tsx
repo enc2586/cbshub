@@ -15,14 +15,6 @@ function Meal() {
     ymd: defaultYMD(),
     variant: defaultVariant(),
   })
-  const [currentMeal, setCurrentMeal] = React.useState<{ ymd: string; variant: number }>({
-    ymd: defaultYMD(),
-    variant: defaultVariant(),
-  })
-  const [mealYMD, setMealYMD] = React.useState<string>(defaultYMD())
-  //   const [mealYMD, setMealYMD] = React.useState<string>('20230117')
-  const [mealVariant, setMealVariant] = React.useState<number>(defaultVariant())
-  const [mealData, setMealData] = React.useState<MealInDay | undefined>(undefined)
   const [mealShowData, setMealShowData] = React.useState<Meal | undefined>(undefined)
 
   const meal = React.useRef<{ [ymd: string]: MealInDay | undefined }>({})
@@ -114,15 +106,25 @@ function Meal() {
             </IconButton>
           </Stack>
         </Stack>
-        <Box sx={{ borderRadius: 1, backgroundColor: 'grey.300', p: 2 }}>
+        <Paper sx={{ p: 2, backgroundColor: 'secondaryBackground.main' }} elevation={0}>
           <Stack spacing={1}>
-            <Typography>
-              <b>
-                {Number(targetMeal.ymd.slice(4, 6))}월 {Number(targetMeal.ymd.slice(6, 8))}일 (
-                {dayOfYMD(targetMeal.ymd, 'short')}){' '}
-                {!isMealLoading ? (mealShowData ? mealShowData.type : null) : null}
-              </b>
-            </Typography>
+            <Stack direction='row' alignItems='center' justifyContent='space-between'>
+              <Typography>
+                <b>
+                  {Number(targetMeal.ymd.slice(4, 6))}월 {Number(targetMeal.ymd.slice(6, 8))}일 (
+                  {dayOfYMD(targetMeal.ymd, 'short')}){' '}
+                  {!isMealLoading ? (mealShowData ? mealShowData.type : null) : null}
+                </b>
+              </Typography>
+
+              {!isMealLoading ? (
+                mealShowData ? (
+                  <Paper sx={{ px: 1 }} elevation={0}>
+                    <Typography fontSize={15}>{mealShowData.calorie} kCal</Typography>
+                  </Paper>
+                ) : null
+              ) : null}
+            </Stack>
             <Divider />
             {!isMealLoading ? (
               mealShowData === undefined ? (
@@ -150,7 +152,7 @@ function Meal() {
               </Stack>
             )}
           </Stack>
-        </Box>
+        </Paper>
       </Stack>
     </Paper>
   )
