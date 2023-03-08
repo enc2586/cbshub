@@ -24,6 +24,7 @@ import Follower from 'components/Follower'
 import Notice from 'components/Notice'
 import LowAuthority from 'pages/LowAuthority'
 import Introduction from 'pages/Introduction'
+import Workflow from 'pages/Workflow'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -60,6 +61,7 @@ function App() {
               <Route path='/Introduction' element={<Introduction />} />
               <Route element={<AuthRequired />}>
                 <Route path='/reveille' element={<Reveille />} />
+                <Route path='/workflow' element={<Workflow />} />
               </Route>
               <Route element={<AuthRequired authority='reveilleManager' />}>
                 <Route path='/reveille/manage' element={<ReveilleManagement />} />

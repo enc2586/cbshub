@@ -27,6 +27,7 @@ import DirectionsRunSharpIcon from '@mui/icons-material/DirectionsRunSharp'
 const pages: { [k: string]: string } = {
   '서비스 소개': '/introduction',
   기상음악: '/reveille',
+  '특별실 신청 예약': '/workflow',
   개인정보처리방침: '/privacy',
 }
 
@@ -59,7 +60,7 @@ function ResponsiveAppBar({
   }
 
   return (
-    <AppBar position='static'>
+    <AppBar position='static' elevation={0}>
       <Container maxWidth='lg'>
         <Toolbar disableGutters>
           <DirectionsRunSharpIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
