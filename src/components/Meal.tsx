@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, Divider, Paper, Stack, Typography } from '@mui/material'
+import { Box, Divider, Paper, Skeleton, Stack, Typography } from '@mui/material'
 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
@@ -123,7 +123,9 @@ function Meal() {
                     <Typography fontSize={15}>{mealShowData.calorie} kCal</Typography>
                   </Paper>
                 ) : null
-              ) : null}
+              ) : (
+                <Skeleton variant='rounded' width={80} height={20} />
+              )}
             </Stack>
             <Divider />
             {!isMealLoading ? (
@@ -143,12 +145,13 @@ function Meal() {
                 </Stack>
               )
             ) : (
-              <Stack
-                alignItems='center'
-                justifyContent='center'
-                sx={{ width: '100%', height: '150px' }}
-              >
-                <CircularProgress />
+              <Stack spacing={1} sx={{ width: '100%', height: '150px' }}>
+                <Skeleton variant='rounded' width={70} height={17} />
+                <Skeleton variant='rounded' width={100} height={17} />
+                <Skeleton variant='rounded' width={80} height={17} />
+                <Skeleton variant='rounded' width={60} height={17} />
+                <Skeleton variant='rounded' width={90} height={17} />
+                <Skeleton variant='rounded' width={50} height={17} />
               </Stack>
             )}
           </Stack>
