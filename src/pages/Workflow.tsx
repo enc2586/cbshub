@@ -473,6 +473,7 @@ function Workflow() {
                 <Typography variant='h5'>신청 내역 일람</Typography>
                 <BotStateChip botState={botState} />
               </Stack>
+              <Typography color='text.secondary'>평일 13시에 신청됩니다</Typography>
               {Object.keys(workflows).length > 0 ? null : (
                 <Paper sx={{ p: 2 }}>
                   <Stack justifyContent='center' alignItems='center' sx={{ height: '300px' }}>
