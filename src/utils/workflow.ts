@@ -1,6 +1,25 @@
 import { db } from 'configs/firebase'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
-import { AutocompleteItem, Classrooms, Teachers, WorkflowConfigs } from 'types/workflow'
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore'
+import {
+  AutocompleteItem,
+  Classrooms,
+  Teachers,
+  WeekdaysSelection,
+  WorkflowConfigs,
+  WeekdaysWorkflow,
+  WeekendsWorkflow,
+  Workflows,
+} from 'types/workflow'
 
 export async function getWorkflowConfigs() {
   const workflowConfigRef = doc(db, 'workflow', 'configuration')
@@ -49,4 +68,65 @@ export async function updateSelfCred(uid: string, cred: { id: string; password: 
   const userRef = doc(db, 'user', uid)
   await updateDoc(userRef, { selfServiceCredential: cred })
   return
+}
+
+export async function applyWeekdayWorkflow(
+  uid: string,
+  title: string,
+  classroom: string,
+  teacher: string,
+  periods: WeekdaysSelection,
+) {
+  const workflowRef = collection(db, 'workflow')
+  const workflowData = {
+    user: uid,
+    title: title,
+    classroom: classroom,
+    teacher: teacher,
+    type: 'weekdays',
+    state: 'idle',
+    periods: periods,
+  } as WeekdaysWorkflow
+
+  await addDoc(workflowRef, workflowData)
+}
+
+export async function getWorkflows(uid: string): Promise<Workflows> {
+  const workflowRef = collection(db, 'workflow')
+  const userWorkflowQuery = query(workflowRef, where('user', '==', uid))
+
+  const workflowSnap = await getDocs(userWorkflowQuery)
+
+  const result: Workflows = {}
+  workflowSnap.forEach((doc) => {
+    result[doc.id] = doc.data() as WeekdaysWorkflow | WeekendsWorkflow
+  })
+
+  return result
+}
+
+export function searchLabel(from: AutocompleteItem[], target: string): string | undefined {
+  for (const item of from) if (item.label === target) return item.id
+
+  return undefined
+}
+export function searchId(from: AutocompleteItem[], target: string): string | undefined {
+  for (const item of from) if (item.id === target) return item.label
+
+  return undefined
+}
+
+export function workflowStatus(message: string): {
+  message: string
+  type: 'success' | 'error' | 'info' | 'warning'
+} {
+  if (message === 'success') {
+    return { message: '신청 성공', type: 'success' }
+  } else if (message === 'idle') {
+    return { message: '신청하지 않음', type: 'info' }
+  } else if (message === 'fromTomorrow') {
+    return { message: '내일부터 신청됨', type: 'warning' }
+  } else {
+    return { message: message, type: 'error' }
+  }
 }
