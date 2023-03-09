@@ -10,4 +10,8 @@ export type UserData = {
   classNo: number
   numberInClass: number
   reveillesApplied: number
+  selfServiceCredential?: {
+    id: string
+    password: string
+  }
 }

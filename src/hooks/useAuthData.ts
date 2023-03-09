@@ -1,21 +1,23 @@
 import * as React from 'react'
 import useAuth from 'hooks/useAuth'
-import { fetchUserData } from 'utils/auth'
 import { UserData } from 'types/auth'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from 'configs/firebase'
 
 function useAuthData() {
   const user = useAuth()
   const [userData, setUserData] = React.useState<UserData | undefined | null>(undefined)
 
   React.useEffect(() => {
-    ;(async function () {
-      if (user === undefined || user === null) {
-        setUserData(user)
-      } else {
-        const newData = await fetchUserData(user.uid)
-        setUserData(newData)
-      }
-    })()
+    if (user === undefined || user === null) {
+      setUserData(user)
+    } else {
+      const userRef = doc(db, 'user', user.uid)
+      onSnapshot(userRef, (doc) => {
+        const userData = doc.data() as UserData
+        setUserData(userData)
+      })
+    }
   }, [user])
 
   return userData
