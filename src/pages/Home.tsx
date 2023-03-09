@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { Alert, Box, Button, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Alert, Badge, Box, Button, Divider, Grid, Paper, Stack, Typography } from '@mui/material'
 
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic'
 import SecurityIcon from '@mui/icons-material/Security'
@@ -15,6 +15,7 @@ import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate
 import EventIcon from '@mui/icons-material/Event'
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import CloudIcon from '@mui/icons-material/Cloud'
+import FmdGoodIcon from '@mui/icons-material/FmdGood'
 import Meal from 'components/Meal'
 
 function Home() {
@@ -37,6 +38,21 @@ function Home() {
                   <Typography variant='h5'>제공하는 서비스</Typography>
                   <Box m={-2}>
                     <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 3 }}>
+                      <Grid item xs={1}>
+                        <Badge color='error' badgeContent='NEW' sx={{ width: '100%' }}>
+                          <Button
+                            size='large'
+                            variant='contained'
+                            fullWidth
+                            startIcon={<FmdGoodIcon />}
+                            onClick={() => {
+                              navigate('/workflow')
+                            }}
+                          >
+                            특별실 신청 예약
+                          </Button>
+                        </Badge>
+                      </Grid>
                       <Grid item xs={1}>
                         <Button
                           size='large'

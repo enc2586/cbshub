@@ -446,7 +446,7 @@ function Workflow() {
                           endIcon={<AddCircleIcon />}
                           onClick={() => setIsSelfCredEditOpen(true)}
                         >
-                          학생관리서비스 로그인 정보 추가
+                          학생관리시스템 로그인 정보 추가
                         </Button>
                       )}
                       <Stack direction='row' justifyContent='flex-end' spacing={1}>
