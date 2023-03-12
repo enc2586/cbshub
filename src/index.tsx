@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import 'index.css'
+import 'assets/global.css'
 
-import { InitializeGoogleAnalytics } from 'utils/google-analytics'
+import { InitializeGoogleAnalytics } from 'services/analytics'
 
 if (!window.location.href.includes('localhost')) {
   InitializeGoogleAnalytics()

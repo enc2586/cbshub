@@ -2,7 +2,7 @@ import * as React from 'react'
 import toast from 'react-hot-toast'
 
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from 'configs/firebase'
+import { auth } from 'features/authentication'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import PasswordIcon from '@mui/icons-material/Password'

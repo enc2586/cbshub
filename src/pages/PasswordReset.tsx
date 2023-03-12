@@ -12,8 +12,8 @@ import {
 } from '@mui/material'
 import { toast } from 'react-hot-toast'
 import { sendPasswordResetEmail } from 'firebase/auth'
-import { auth } from 'configs/firebase'
 import { useNavigate } from 'react-router-dom'
+import { auth } from 'features/authentication'
 
 function PasswordReset() {
   const navigate = useNavigate()

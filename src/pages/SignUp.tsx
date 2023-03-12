@@ -17,14 +17,14 @@ import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth'
 
 import toast from 'react-hot-toast'
 
-import { auth, db } from 'configs/firebase'
+import { auth, UserDataForSignUp } from 'features/authentication'
+import { db } from 'services/firestore'
 import * as React from 'react'
 import Divider from '@mui/material/Divider'
 import { collection, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
 import { useNavigate } from 'react-router-dom'
 import PrivacyAgreement from 'components/PrivacyAgreement'
-import { UserData } from 'types/auth'
 
 function SignUp() {
   const navigate = useNavigate()
@@ -69,7 +69,7 @@ function SignUp() {
     toast.loading('회원정보를 등록하고 있어요', { id: signUpToastId })
     const uid = userCredential!.user.uid
     const newUserRef = doc(db, 'user', uid)
-    const newUserData: UserData = {
+    const newUserData: UserDataForSignUp = {
       authority: ['student'],
       name: values.name,
       email: values.email,

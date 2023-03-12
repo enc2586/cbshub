@@ -53,7 +53,7 @@ import {
   searchLabel,
   updateSelfCred,
   workflowStatus,
-} from 'utils/workflow'
+} from 'features/workflow/services/workflow'
 import {
   AutocompleteItem,
   BotState,
@@ -64,16 +64,14 @@ import {
   WeekendsWorkflow,
   WorkflowConfigs,
   Workflows,
-} from 'types/workflow'
-import useAuthData from 'hooks/useAuthData'
-import { UserData } from 'types/auth'
+} from 'features/workflow/types/workflow'
 import { User } from 'firebase/auth'
-import useAuth from 'hooks/useAuth'
 import { toast } from 'react-hot-toast'
 import { collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore'
-import { db } from 'configs/firebase'
 
 import selfSystemImage from 'images/selfSystem.png'
+import { useAuth, useUserData } from 'features/authentication'
+import { db } from 'services/firestore'
 
 const emptyWeekdaySelection = {
   0: { 0: false, 1: false, 2: false },
@@ -85,7 +83,7 @@ const emptyWeekdaySelection = {
 
 function Workflow() {
   const user = useAuth() as User
-  const userData = useAuthData()
+  const userData = useUserData()
 
   const [selfServiceCredential, setSelfServiceCredential] = React.useState<
     { id: string; password: string } | undefined

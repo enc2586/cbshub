@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { auth } from 'configs/firebase'
+import { auth } from '../services/auth'
 
 function useAuth() {
   const [currentUser, setCurrentUser] = React.useState<User | null | undefined>(undefined)

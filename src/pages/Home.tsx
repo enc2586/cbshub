@@ -16,7 +16,7 @@ import EventIcon from '@mui/icons-material/Event'
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import CloudIcon from '@mui/icons-material/Cloud'
 import FmdGoodIcon from '@mui/icons-material/FmdGood'
-import Meal from 'components/Meal'
+// import Meal from 'components/Meal'
 
 function Home() {
   const navigate = useNavigate()
@@ -29,7 +29,7 @@ function Home() {
       <Box m={-2}>
         <Grid container spacing={2} direction='row-reverse'>
           <Grid item xs={12} md={4}>
-            <Meal />
+            {/* <Meal /> */}
           </Grid>
           <Grid item xs={12} md={8}>
             <Stack spacing={2}>

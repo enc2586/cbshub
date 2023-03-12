@@ -1,7 +1,7 @@
-export type Dormitory = 'sareum' | 'chungwoon'
+export type SearchedMusic = { name: string; artist: string; [key: string]: any }
 
 export type QueuedMusic = {
-  id?: string
+  id: string
   title: string
   artist: string
   user: string

@@ -1,11 +1,13 @@
 import { useLocation, Outlet, Navigate } from 'react-router-dom'
-import useAuthData from 'hooks/useAuthData'
+
+import useUserData from '../hooks/useUserData'
+import { authority } from '../types/userData'
 
 import ValidateAuth from 'pages/ValidateAuth'
 import LowAuthority from 'pages/LowAuthority'
 
-function AuthRequired({ authority }: { authority?: string }) {
-  const userData = useAuthData()
+function AuthRequired({ authority }: { authority?: authority[] }) {
+  const userData = useUserData()
   const location = useLocation()
 
   if (userData === undefined) {
@@ -14,7 +16,10 @@ function AuthRequired({ authority }: { authority?: string }) {
     return <Navigate to='/signin' state={{ from: location }} replace />
   } else {
     if (authority !== undefined) {
-      if (userData.authority.includes(authority) || userData.authority.includes('administrator')) {
+      if (
+        userData.authority.includes('administrator') ||
+        authority.every((elem) => userData.authority.includes(elem))
+      ) {
         return <Outlet />
       } else {
         return <LowAuthority needed={authority} />

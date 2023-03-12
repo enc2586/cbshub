@@ -1,4 +1,3 @@
-import { db } from 'configs/firebase'
 import {
   addDoc,
   collection,
@@ -6,10 +5,10 @@ import {
   getDoc,
   getDocs,
   query,
-  setDoc,
   updateDoc,
   where,
 } from 'firebase/firestore'
+import { db } from 'services/firestore'
 import {
   AutocompleteItem,
   Classrooms,
@@ -19,7 +18,7 @@ import {
   WeekdaysWorkflow,
   WeekendsWorkflow,
   Workflows,
-} from 'types/workflow'
+} from '../types/workflow'
 
 export async function getWorkflowConfigs() {
   const workflowConfigRef = doc(db, 'workflow', 'configuration')
