@@ -39,10 +39,10 @@ import AcUnitIcon from '@mui/icons-material/AcUnit'
 import SettingsIcon from '@mui/icons-material/Settings'
 import DiscFullIcon from '@mui/icons-material/DiscFull'
 
-import useAuthData from 'hooks/useAuthData'
+import { useUserData } from 'features/authentication'
 import { fetchReveillesQueue, getDefaultDormitory, getReveilleConfig } from 'utils/reveille'
 import toast from 'react-hot-toast'
-import { db } from 'configs/firebase'
+import { db } from 'services/firestore'
 import {
   doc,
   FieldValue,
@@ -52,12 +52,18 @@ import {
   updateDoc,
   writeBatch,
 } from 'firebase/firestore'
-import { Dormitory, QueuedMusic, ReveilleConfig } from 'types/reveille'
+import { Dormitory } from 'types/dormitories'
+import {
+  CensoredMusic,
+  PlayedMusic,
+  QueuedMusic,
+  ReveilleConfig,
+} from 'features/reveille/types/reveille'
 
 // TODO: 빠르게 기숙사를 바꿨을 때 제대로 작동하나 확인
 
 function ReveilleManagement() {
-  const userData = useAuthData()
+  const userData = useUserData()
   const reveilleConfigRef = doc(db, 'reveille', 'configuration')
 
   React.useEffect(() => {
@@ -195,11 +201,16 @@ function ReveilleManagement() {
   const playedSet = async (targets: number[], dormitory: Dormitory) => {
     const playedData: { [k: string]: any } = {}
     targets.map((index) => {
-      const musicData = { ...queue[index], playedOn: serverTimestamp() }
+      const musicData: Omit<Omit<PlayedMusic, 'id'>, 'playedOn'> & {
+        playedOn?: FieldValue
+        id?: string
+      } = { ...queue[index], playedOn: serverTimestamp() }
       const musicId = musicData.id as string
       delete musicData.id
 
-      playedData[musicId] = musicData
+      playedData[musicId] = musicData as Omit<Omit<PlayedMusic, 'id'>, 'playedOn'> & {
+        playedOn: FieldValue
+      }
     })
 
     const batch = writeBatch(db)
@@ -258,7 +269,10 @@ function ReveilleManagement() {
     const censoredData: { [k: string]: any } = {}
     const targetUsers: string[] = []
     targets.map((index) => {
-      const musicData = { ...queue[index], censoredOn: serverTimestamp(), reason: reason }
+      const musicData: Omit<Omit<CensoredMusic, 'id'>, 'censoredOn'> & {
+        censoredOn?: FieldValue
+        id?: string
+      } = { ...queue[index], censoredOn: serverTimestamp(), reason: reason }
       const musicId = musicData.id as string
       delete musicData.id
 

@@ -1,4 +1,10 @@
-import { db } from 'configs/firebase'
+import {
+  PlayedMusic,
+  QueuedMusic,
+  CensoredMusic,
+  ReveilleConfig,
+} from 'features/reveille/types/reveille'
+import { db } from 'services/firestore'
 import {
   doc,
   getDoc,
@@ -10,8 +16,8 @@ import {
   query,
   where,
 } from 'firebase/firestore'
-import { UserData } from 'types/auth'
-import { Dormitory, PlayedMusic, QueuedMusic, CensoredMusic, ReveilleConfig } from 'types/reveille'
+import { UserData } from 'features/authentication'
+import { Dormitory } from 'types/dormitories'
 
 function getDefaultDormitory(userData: UserData): Dormitory {
   const grade = userData.grade

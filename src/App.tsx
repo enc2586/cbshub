@@ -6,14 +6,13 @@ import Reveille from 'pages/Reveille'
 
 import { Toaster } from 'react-hot-toast'
 
-import { lightTheme, darkTheme } from 'themes'
+import { lightTheme, darkTheme } from 'assets/themes'
 
 import Home from 'pages/Home'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
 import PasswordReset from 'pages/PasswordReset'
-import ReveilleManagement from 'pages/ReveilleManagement'
-import AuthRequired from 'components/AuthRequired'
+// import ReveilleManagement from 'pages/ReveilleManagement'
 import ResponsiveAppBar from 'components/ResponsiveAppBar'
 import SignOut from 'pages/SignOut'
 
@@ -24,7 +23,10 @@ import Follower from 'components/Follower'
 import Notice from 'components/Notice'
 import LowAuthority from 'pages/LowAuthority'
 import Introduction from 'pages/Introduction'
+// import Workflow from 'pages/Workflow'
+import { AuthRequired } from 'features/authentication'
 import Workflow from 'pages/Workflow'
+import ReveilleManagement from 'pages/ReveilleManage'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -53,23 +55,26 @@ function App() {
           <Container maxWidth='lg' sx={{ p: 2 }}>
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path='/signin' element={<SignIn />} />
-              <Route path='/signup' element={<SignUp />} />
-              <Route path='/signout' element={<SignOut />} />
-              <Route path='/passwordreset' element={<PasswordReset />} />
-              <Route path='/privacy' element={<AboutPrivacy />} />
-              <Route path='/Introduction' element={<Introduction />} />
+              <Route path='signin' element={<SignIn />} />
+              <Route path='signup' element={<SignUp />} />
+              <Route path='signout' element={<SignOut />} />
+              <Route path='passwordreset' element={<PasswordReset />} />
+              <Route path='privacy' element={<AboutPrivacy />} />
+              <Route path='introduction' element={<Introduction />} />
               <Route element={<AuthRequired />}>
-                <Route path='/reveille' element={<Reveille />} />
-                <Route path='/workflow' element={<Workflow />} />
+                <Route path='reveille'>
+                  <Route path='' element={<Reveille />} />
+                  <Route element={<AuthRequired authority={['reveilleManager']} />}>
+                    <Route path='manage' element={<ReveilleManagement />} />
+                  </Route>
+                </Route>
+                <Route path='workflow' element={<Workflow />} />
               </Route>
-              <Route element={<AuthRequired authority='reveilleManager' />}>
-                <Route path='/reveille/manage' element={<ReveilleManagement />} />
+              <Route path={'test'} element={<AuthRequired authority={['administrator']} />}>
+                <Route path='lost' element={<Lost />} />
+                <Route path='lowauthority' element={<LowAuthority needed={['administrator']} />} />
               </Route>
-              <Route element={<AuthRequired authority='admin' />}>
-                <Route path='/test/lowauthority' element={<LowAuthority needed='admin' />} />
-              </Route>
-              <Route path='/*' element={<Lost />} />
+              <Route path='*' element={<Lost />} />
             </Routes>
           </Container>
         </BrowserRouter>

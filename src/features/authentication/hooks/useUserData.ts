@@ -1,10 +1,10 @@
 import * as React from 'react'
-import useAuth from 'hooks/useAuth'
-import { UserData } from 'types/auth'
+import useAuth from './useAuth'
+import { UserData } from '../types/userData'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from 'configs/firebase'
+import { db } from 'services/firestore'
 
-function useAuthData() {
+function useUserData() {
   const user = useAuth()
   const [userData, setUserData] = React.useState<UserData | undefined | null>(undefined)
 
@@ -23,4 +23,4 @@ function useAuthData() {
   return userData
 }
 
-export default useAuthData
+export default useUserData

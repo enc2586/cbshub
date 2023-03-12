@@ -1,8 +1,8 @@
 import { FieldValue } from 'firebase/firestore'
 
 export type UserData = {
-  authority: string[]
-  agreedTermsAt: Date | FieldValue
+  authority: authority[]
+  agreedTermsAt: Date
   email: string
   name: string
   sex: boolean
@@ -15,3 +15,7 @@ export type UserData = {
     password: string
   }
 }
+
+export type UserDataForSignUp = Omit<UserData, 'agreedTermsAt'> & { agreedTermsAt: FieldValue }
+
+export type authority = 'student' | 'teacher' | 'administrator' | 'reveilleManager'
