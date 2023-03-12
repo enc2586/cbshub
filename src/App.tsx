@@ -27,6 +27,8 @@ import Introduction from 'pages/Introduction'
 import { AuthRequired } from 'features/authentication'
 import Workflow from 'pages/Workflow'
 import ReveilleManagement from 'pages/ReveilleManage'
+import BooksManage from 'pages/BooksManage'
+import Books from 'pages/Books'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -69,6 +71,12 @@ function App() {
                   </Route>
                 </Route>
                 <Route path='workflow' element={<Workflow />} />
+              </Route>
+              <Route path='books' element={<AuthRequired />}>
+                <Route path='' element={<Books />} />
+                <Route element={<AuthRequired authority={['teacher']} />}>
+                  <Route path='manage' element={<BooksManage />} />
+                </Route>
               </Route>
               <Route path={'test'} element={<AuthRequired authority={['administrator']} />}>
                 <Route path='lost' element={<Lost />} />

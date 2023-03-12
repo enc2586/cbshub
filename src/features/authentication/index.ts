@@ -1,12 +1,14 @@
 import useAuth from './hooks/useAuth'
 import useUserData from './hooks/useUserData'
-export { useAuth, useUserData }
+import useStudents from './hooks/useStudents'
+export { useAuth, useUserData, useStudents }
 
 import { authority, UserData } from './types/userData'
 export type { authority, UserData }
 
 import AuthRequired from './components/AuthRequired'
-export { AuthRequired }
+import StudentSelect from './components/StudentSelect'
+export { AuthRequired, StudentSelect }
 
 // TODO: 나중에 꼭 없앨 것!
 import { auth } from './services/auth'
