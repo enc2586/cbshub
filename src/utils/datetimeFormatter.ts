@@ -11,3 +11,9 @@ export const minuteFormat = (date: Date) => {
 
   return formatter.format(date)
 }
+
+export const formatTime = (date: Date, options?: Intl.DateTimeFormatOptions) => {
+  const formatter = new Intl.DateTimeFormat('ko-KR', options)
+
+  return formatter.format(date)
+}

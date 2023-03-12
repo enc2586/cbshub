@@ -26,13 +26,7 @@ import toast from 'react-hot-toast'
 import { User } from 'firebase/auth'
 import { QueuedMusic, ReveilleConfig } from '../types/reveille'
 
-function ReveilleQueue({
-  dormitory,
-  sx,
-}: {
-  dormitory: Dormitory
-  sx?: SxProps<Theme> | undefined
-}) {
+function ReveilleQueue({ dormitory, sx }: { dormitory: Dormitory; sx?: SxProps<Theme> }) {
   const user = useAuth()
   const config = useReveilleConfig()
   const reveilleQueue = useReveilleQueue()
