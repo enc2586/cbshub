@@ -1,4 +1,4 @@
-import { auth } from 'configs/firebase'
+import { auth } from 'features/authentication'
 import { signOut } from 'firebase/auth'
 import * as React from 'react'
 import toast from 'react-hot-toast'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import useAuth from 'hooks/useAuth'
+import { useAuth } from 'features/authentication'
 
 import {
   AppBar,
@@ -28,6 +28,7 @@ const pages: { [k: string]: string } = {
   '서비스 소개': '/introduction',
   기상음악: '/reveille',
   '특별실 신청 예약': '/workflow',
+  '정보도서 대출': '/books',
   개인정보처리방침: '/privacy',
 }
 

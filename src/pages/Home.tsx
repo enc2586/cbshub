@@ -16,7 +16,9 @@ import EventIcon from '@mui/icons-material/Event'
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import CloudIcon from '@mui/icons-material/Cloud'
 import FmdGoodIcon from '@mui/icons-material/FmdGood'
+import BookIcon from '@mui/icons-material/Book'
 import Meal from 'components/Meal'
+// import Meal from 'components/Meal'
 
 function Home() {
   const navigate = useNavigate()
@@ -52,6 +54,19 @@ function Home() {
                             특별실 신청 예약
                           </Button>
                         </Badge>
+                      </Grid>
+                      <Grid item xs={1}>
+                        <Button
+                          size='large'
+                          variant='contained'
+                          fullWidth
+                          startIcon={<BookIcon />}
+                          onClick={() => {
+                            navigate('/books')
+                          }}
+                        >
+                          정보도서 대출
+                        </Button>
                       </Grid>
                       <Grid item xs={1}>
                         <Button

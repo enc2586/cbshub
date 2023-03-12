@@ -1,4 +1,4 @@
-import { db } from 'configs/firebase'
+import { db } from 'services/firestore'
 import { doc, getDoc } from 'firebase/firestore'
 
 function hm(hours: number, minutes: number): number {
