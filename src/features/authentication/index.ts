@@ -8,7 +8,8 @@ export type { authority, UserData }
 
 import AuthRequired from './components/AuthRequired'
 import StudentSelect from './components/StudentSelect'
-export { AuthRequired, StudentSelect }
+import LoginToContinueButton from './components/LoginToContinueButton'
+export { AuthRequired, StudentSelect, LoginToContinueButton }
 
 // TODO: 나중에 꼭 없앨 것!
 import { auth } from './services/auth'

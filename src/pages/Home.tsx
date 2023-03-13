@@ -62,7 +62,7 @@ function Home() {
                           fullWidth
                           startIcon={<BookIcon />}
                           onClick={() => {
-                            navigate('/books')
+                            navigate('/book')
                           }}
                         >
                           정보도서 대출
