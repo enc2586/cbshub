@@ -29,6 +29,7 @@ import Workflow from 'pages/Workflow'
 import ReveilleManagement from 'pages/ReveilleManage'
 import BooksManage from 'pages/BooksManage'
 import Books from 'pages/Books'
+import { BookInfo } from 'features/books'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -72,8 +73,9 @@ function App() {
                 </Route>
                 <Route path='workflow' element={<Workflow />} />
               </Route>
-              <Route path='books' element={<AuthRequired />}>
+              <Route path='book'>
                 <Route path='' element={<Books />} />
+                <Route path='id/:bookId' element={<BookInfo />} />
                 <Route element={<AuthRequired authority={['teacher']} />}>
                   <Route path='manage' element={<BooksManage />} />
                 </Route>
