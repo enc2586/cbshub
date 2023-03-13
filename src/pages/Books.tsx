@@ -17,7 +17,7 @@ function Books() {
           startIcon={<VpnKeyIcon />}
           color='error'
           onClick={() => {
-            navigate('/books/manage')
+            navigate('/book/manage')
           }}
         >
           도서대출 관리

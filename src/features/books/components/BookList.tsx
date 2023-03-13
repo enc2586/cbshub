@@ -35,7 +35,7 @@ import {
   Sledding,
 } from '@mui/icons-material'
 
-import useBooks from '../hooks/useBook'
+import useBooks from '../hooks/useBooks'
 import { formatTime } from 'utils/datetimeFormatter'
 import { addBooks, checkIn, checkOut, removeBook } from '../services/books'
 import toast from 'react-hot-toast'
@@ -57,7 +57,7 @@ function BookList() {
   const columns: GridColDef[] = [
     {
       field: 'selection',
-      headerName: '',
+      headerName: '선택',
       width: 50,
       renderCell: (params: any) => {
         return (
@@ -72,17 +72,36 @@ function BookList() {
         )
       },
     },
-    { field: 'id', headerName: '도서ID', width: 100 },
+    { field: 'id', headerName: '도서ID', width: 225 },
+    {
+      field: 'copyId',
+      headerName: 'URL',
+      width: 85,
+      renderCell: (params: any) => (
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText(
+              window.location.href.slice(0, -7) + '/id/' + params.row.id,
+            )
+            toast.success('링크를 복사했어요')
+          }}
+        >
+          복사
+        </Button>
+      ),
+    },
     { field: 'title', headerName: '도서명', width: 200 },
     { field: 'author', headerName: '작가' },
     { field: 'publisher', headerName: '출판사' },
     {
       field: 'state',
       headerName: '상태',
-      width: 50,
+      width: 75,
       renderCell: (params: any) => {
         if (params.value === 'checkedOut') return '대출'
         else if (params.value === 'idle') return '보관'
+        else if (params.value === 'checkInReq') return '반납요청'
+        else if (params.value === 'checkOutReq') return '대출요청'
         else return params.value
       },
     },
@@ -96,14 +115,14 @@ function BookList() {
           return (
             <Button
               variant='contained'
-              color='warning'
+              color='info'
               sx={{ width: '70px' }}
               onClick={() => {
                 setSelection([params.row.id])
                 setCheckinOpen(true)
               }}
             >
-              반납처리
+              반납
             </Button>
           )
         else if (params.row.state === 'idle')
@@ -120,13 +139,78 @@ function BookList() {
               대출
             </Button>
           )
-        else if (params.row.state === 'checkOutPend')
+        else if (params.row.state === 'checkOutReq')
           return (
             <Stack direction='row'>
-              <Button variant='contained' color='success' sx={{ width: '70px' }}>
+              <Button
+                variant='contained'
+                color='success'
+                sx={{ width: '70px' }}
+                onClick={() =>
+                  toast.promise(
+                    checkOut(params.row.user as string, params.row.userName as string, [
+                      params.row.id as string,
+                    ]),
+                    {
+                      loading: '대출 승인 처리중...',
+                      success: '대출 승인됨',
+                      error: '대출 승인 실패. 내역을 꼭 확인하세요.',
+                    },
+                  )
+                }
+              >
                 승인
               </Button>
-              <Button variant='contained' color='error' sx={{ width: '70px' }}>
+              <Button
+                variant='contained'
+                color='error'
+                sx={{ width: '70px' }}
+                onClick={() =>
+                  toast.promise(checkIn([params.row.id as string]), {
+                    loading: '대출 거부 처리중...',
+                    success: '대출 거부됨',
+                    error: '대출 거부 실패. 내역을 꼭 확인하세요.',
+                  })
+                }
+              >
+                거부
+              </Button>
+            </Stack>
+          )
+        else if (params.row.state === 'checkInReq')
+          return (
+            <Stack direction='row'>
+              <Button
+                variant='contained'
+                color='success'
+                sx={{ width: '70px' }}
+                onClick={() =>
+                  toast.promise(checkIn([params.row.id as string]), {
+                    loading: '반납 승인 처리중...',
+                    success: '반납 승인됨',
+                    error: '반납 승인 실패. 내역을 꼭 확인하세요.',
+                  })
+                }
+              >
+                승인
+              </Button>
+              <Button
+                variant='contained'
+                color='error'
+                sx={{ width: '70px' }}
+                onClick={() =>
+                  toast.promise(
+                    checkOut(params.row.user as string, params.row.userName as string, [
+                      params.row.id as string,
+                    ]),
+                    {
+                      loading: '반납 거부 처리중...',
+                      success: '반납 거부됨',
+                      error: '반납 거부 실패. 내역을 꼭 확인하세요.',
+                    },
+                  )
+                }
+              >
                 거부
               </Button>
             </Stack>
@@ -166,6 +250,8 @@ function BookList() {
   const initialState = {
     columns: {
       columnVisibilityModel: {
+        selection: true,
+        copyId: true,
         id: false,
         title: true,
         author: true,

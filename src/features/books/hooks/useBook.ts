@@ -1,29 +1,22 @@
 import * as React from 'react'
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from 'services/firestore'
 
-function useBooks() {
-  const [books, setBooks] = React.useState<{ [id: string]: Book }>({})
+function useBook(id: string) {
+  const [book, setBook] = React.useState<Book | null | undefined>(undefined)
 
   React.useEffect(() => {
-    const booksRef = collection(db, 'books')
-    return onSnapshot(
-      query(booksRef, orderBy('title', 'asc'), orderBy('state', 'asc')),
-      (snapshot) => {
-        const result: { [id: string]: Book } = {}
-        snapshot.forEach((doc) => {
-          const bookData = doc.data()
-          bookData.checkedOn = bookData.checkedOn.toDate()
-
-          result[doc.id] = bookData as Book
-        })
-
-        setBooks(result)
-      },
-    )
+    const booksRef = doc(db, 'books', id)
+    return onSnapshot(booksRef, (doc) => {
+      if (doc.exists()) {
+        setBook(doc.data() as Book)
+      } else {
+        setBook(null)
+      }
+    })
   }, [])
 
-  return books
+  return book
 }
 
-export default useBooks
+export default useBook
