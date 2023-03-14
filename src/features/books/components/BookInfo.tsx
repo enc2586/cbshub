@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import SubjectBox from 'components/SubjectBox'
 import { Grid, Stack, Typography, Paper, Button } from '@mui/material'
@@ -16,6 +16,8 @@ import toast from 'react-hot-toast'
 function BookInfo() {
   const user = useAuth()
   const userData = useUserData()
+
+  const navigate = useNavigate()
 
   const params = useParams()
   const bookId = params.bookId as string
@@ -104,7 +106,9 @@ function BookInfo() {
               {user ? null : <LoginToContinueButton variant='contained' />}
             </Stack>
             <Stack direction='row' justifyContent='space-between'>
-              <Button variant='outlined'>뒤로가기</Button>
+              <Button variant='outlined' onClick={() => () => navigate(-1)}>
+                뒤로가기
+              </Button>
               {bookData.state === 'idle' ? (
                 <Stack direction='row'>
                   <Button

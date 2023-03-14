@@ -30,22 +30,36 @@ function Introduction() {
                   Github 방문
                 </Button>
               </Stack>
-              <Box sx={{ backgroundColor: 'primary.main', p: 1, pl: 2, borderRadius: 1 }}>
+              <Box sx={{ backgroundColor: 'black', p: 1, pl: 2, borderRadius: 1 }}>
                 <Stack direction='row' alignItems='center'>
                   <DirectionsRunSharpIcon sx={{ mr: 1, color: 'white' }} />
                   <Typography
                     variant='h6'
                     noWrap
                     sx={{
-                      mr: 2,
                       fontWeight: 700,
                       letterSpacing: '.3rem',
                       color: 'white',
                       textDecoration: 'none',
                     }}
                   >
-                    CBSHUB
+                    CBS
                   </Typography>
+                  <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}>
+                    <Typography
+                      variant='h6'
+                      noWrap
+                      sx={{
+                        ml: '.3rem',
+                        fontWeight: 700,
+                        letterSpacing: '.3rem',
+                        color: 'black',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      HUB
+                    </Typography>
+                  </Paper>
                 </Stack>
               </Box>
               <Typography>
@@ -96,7 +110,7 @@ function Introduction() {
                     특별실 신청 예약에 대해
                   </Button>
                 </Grid>
-                {/* <Grid item xs={1}>
+                <Grid item xs={1}>
                   <Button
                     size='large'
                     variant='outlined'
@@ -107,7 +121,7 @@ function Introduction() {
                   >
                     정보도서 대출에 대해
                   </Button>
-                </Grid> */}
+                </Grid>
               </Grid>
             </Box>
           </Stack>

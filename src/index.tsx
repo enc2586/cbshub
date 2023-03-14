@@ -5,6 +5,10 @@ import 'assets/global.css'
 
 import { InitializeGoogleAnalytics } from 'services/analytics'
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+
+serviceWorkerRegistration.register()
+
 if (!window.location.href.includes('localhost')) {
   InitializeGoogleAnalytics()
   console.log('GA initialized.')

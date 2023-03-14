@@ -13,6 +13,7 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
+  Paper,
   Stack,
   Toolbar,
   Tooltip,
@@ -61,26 +62,45 @@ function ResponsiveAppBar({
   }
 
   return (
-    <AppBar position='static' elevation={0}>
+    <AppBar position='static' elevation={0} sx={{ backgroundColor: 'black' }}>
       <Container maxWidth='lg'>
         <Toolbar disableGutters>
-          <DirectionsRunSharpIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant='h6'
-            noWrap
-            component={Link}
-            to='/'
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+          <Button
+            disableRipple
+            onClick={() => navigate('/')}
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
           >
-            CBSHUB
-          </Typography>
+            <Stack direction='row' alignItems='center'>
+              <DirectionsRunSharpIcon sx={{ mr: 1, color: 'white' }} />
+              <Typography
+                variant='h6'
+                noWrap
+                sx={{
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'white',
+                  textDecoration: 'none',
+                }}
+              >
+                CBS
+              </Typography>
+              <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}>
+                <Typography
+                  variant='h6'
+                  noWrap
+                  sx={{
+                    ml: '.3rem',
+                    fontWeight: 700,
+                    letterSpacing: '.3rem',
+                    color: 'black',
+                    textDecoration: 'none',
+                  }}
+                >
+                  HUB
+                </Typography>
+              </Paper>
+            </Stack>
+          </Button>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -124,7 +144,7 @@ function ResponsiveAppBar({
               ))}
             </Menu>
           </Box>
-          <DirectionsRunSharpIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <DirectionsRunSharpIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant='h5'
             noWrap
@@ -140,7 +160,38 @@ function ResponsiveAppBar({
               textDecoration: 'none',
             }}
           >
-            CBSHUB
+            <Button disableRipple onClick={() => navigate('/')} sx={{ mr: 1 }}>
+              <Stack direction='row' alignItems='center'>
+                <DirectionsRunSharpIcon sx={{ mr: 1, color: 'white' }} />
+                <Typography
+                  variant='h6'
+                  noWrap
+                  sx={{
+                    fontWeight: 700,
+                    letterSpacing: '.3rem',
+                    color: 'white',
+                    textDecoration: 'none',
+                  }}
+                >
+                  CBS
+                </Typography>
+                <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}>
+                  <Typography
+                    variant='h6'
+                    noWrap
+                    sx={{
+                      ml: '.3rem',
+                      fontWeight: 700,
+                      letterSpacing: '.3rem',
+                      color: 'black',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    HUB
+                  </Typography>
+                </Paper>
+              </Stack>
+            </Button>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {Object.entries(pages).map(([title, link]) => (
