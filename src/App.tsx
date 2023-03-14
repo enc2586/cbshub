@@ -30,6 +30,8 @@ import ReveilleManagement from 'pages/ReveilleManage'
 import BooksManage from 'pages/BooksManage'
 import Books from 'pages/Books'
 import { BookInfo } from 'features/books'
+import ReveilleIntroduction from 'pages/ReveilleIntroduction'
+import WorkflowIntroduction from 'pages/WorkflowIntroduction'
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
@@ -44,7 +46,7 @@ function App() {
 
   React.useEffect(() => {
     if (!store.has('darkTheme')) {
-      store.set('darkTheme', false)
+      store.set('darkTheme', true)
     }
 
     setIsDarkTheme(store.get('darkTheme'))
@@ -63,15 +65,21 @@ function App() {
               <Route path='signout' element={<SignOut />} />
               <Route path='passwordreset' element={<PasswordReset />} />
               <Route path='privacy' element={<AboutPrivacy />} />
-              <Route path='introduction' element={<Introduction />} />
-              <Route element={<AuthRequired />}>
-                <Route path='reveille'>
-                  <Route path='' element={<Reveille />} />
-                  <Route element={<AuthRequired authority={['reveilleManager']} />}>
-                    <Route path='manage' element={<ReveilleManagement />} />
-                  </Route>
+              <Route path='introduction'>
+                <Route path='' element={<Introduction />} />
+                <Route path='reveille' element={<ReveilleIntroduction />} />
+                <Route path='workflow' element={<WorkflowIntroduction />} />
+                <Route path='book' element={<Introduction />} />
+              </Route>
+
+              <Route path='reveille' element={<AuthRequired />}>
+                <Route path='' element={<Reveille />} />
+                <Route element={<AuthRequired authority={['reveilleManager']} />}>
+                  <Route path='manage' element={<ReveilleManagement />} />
                 </Route>
-                <Route path='workflow' element={<Workflow />} />
+              </Route>
+              <Route path='workflow' element={<AuthRequired />}>
+                <Route path='' element={<Workflow />} />
               </Route>
               <Route path='book'>
                 <Route path='' element={<Books />} />

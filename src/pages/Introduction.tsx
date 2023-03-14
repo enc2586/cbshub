@@ -4,9 +4,11 @@ import { Alert, AlertTitle, Box, Button, Grid, Paper, Stack, Typography } from '
 import GitHubIcon from '@mui/icons-material/GitHub'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import DirectionsRunSharpIcon from '@mui/icons-material/DirectionsRunSharp'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Introduction() {
+  const navigate = useNavigate()
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -68,6 +70,46 @@ function Introduction() {
                 하여 알아보실 수 있습니다.
               </Typography>
             </Stack>
+            <Box m={-1}>
+              <Grid container columns={{ xs: 1, sm: 2, md: 3, xl: 4 }} spacing={1}>
+                <Grid item xs={1}>
+                  <Button
+                    size='large'
+                    variant='outlined'
+                    fullWidth
+                    onClick={() => {
+                      navigate('/introduction/reveille')
+                    }}
+                  >
+                    기상음악에 대해
+                  </Button>
+                </Grid>
+                <Grid item xs={1}>
+                  <Button
+                    size='large'
+                    variant='outlined'
+                    fullWidth
+                    onClick={() => {
+                      navigate('/introduction/workflow')
+                    }}
+                  >
+                    특별실 신청 예약에 대해
+                  </Button>
+                </Grid>
+                {/* <Grid item xs={1}>
+                  <Button
+                    size='large'
+                    variant='outlined'
+                    fullWidth
+                    onClick={() => {
+                      navigate('/introduction/book')
+                    }}
+                  >
+                    정보도서 대출에 대해
+                  </Button>
+                </Grid> */}
+              </Grid>
+            </Box>
           </Stack>
         </Paper>
       </Grid>
