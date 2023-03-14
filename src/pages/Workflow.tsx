@@ -67,7 +67,9 @@ import {
 } from 'features/workflow/types/workflow'
 import { User } from 'firebase/auth'
 import { toast } from 'react-hot-toast'
-import { collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore'
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query, where } from 'firebase/firestore'
+
+import store from 'store2'
 
 import selfSystemImage from 'images/selfSystem.png'
 import { useAuth, useUserData } from 'features/authentication'
@@ -133,7 +135,11 @@ function Workflow() {
   React.useEffect(() => {
     if (user) {
       const workflowRef = collection(db, 'workflow')
-      const userWorkflowQuery = query(workflowRef, where('user', '==', user.uid))
+      const userWorkflowQuery = query(
+        workflowRef,
+        where('user', '==', user.uid),
+        orderBy('state', 'desc'),
+      )
       onSnapshot(userWorkflowQuery, (querySnapshot) => {
         const result: Workflows = {}
         querySnapshot.forEach((doc) => {
@@ -222,6 +228,14 @@ function Workflow() {
   const [isAboutSelfSystemOpen, setIsAboutSelfSystemOpen] = React.useState(false)
 
   const [isExemptionOpen, setIsExemptionOpen] = React.useState(false)
+  const [isGuideOpen, setIsGuideOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!store.has('readWorkflowGuide')) {
+      store.set('readWorkflowGuide', true)
+      setIsGuideOpen(true)
+    }
+  }, [])
 
   return (
     <Box>
@@ -232,6 +246,15 @@ function Workflow() {
               <Stack direction='row' alignItems='center' justifyContent='space-between'>
                 <Stack direction='row' spacing={1}>
                   <Typography variant='h5'>특별실 신청 예약</Typography>
+
+                  <IconButton
+                    disableRipple
+                    size='small'
+                    sx={{ p: 0 }}
+                    onClick={() => setIsGuideOpen(true)}
+                  >
+                    <InfoIcon color='info' />
+                  </IconButton>
                   {Object.keys(workflows).length > 0 ? (
                     <Typography
                       component={Link}
@@ -640,6 +663,31 @@ function Workflow() {
         </DialogContent>
         <DialogActions>
           <Button variant='contained' onClick={() => setIsExemptionOpen(false)}>
+            닫기
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={isGuideOpen} onClose={() => setIsGuideOpen(false)}>
+        <DialogTitle>특별실 신청 예약 서비스에 대해</DialogTitle>
+        <DialogContent>
+          <Typography>
+            특별실 신청 예약 서비스란, 방과후나 동아리활동 등 주기적으로 신청해야 하는 자습의 신청을
+            자동화해주는 서비스입니다.
+            <br />
+            <br />
+            이곳에 원하는 교실명과 선생님, 시간대를 입력해두면, <b>평일 13시</b>마다 신청봇이 작동해
+            해당 시간에 자습을 자동으로 신청해줍니다.
+            <br />
+            <br />
+            평일 13시에 봇이 작동하므로, <b>13시 이후에 추가된 예약은 다음날부터 반영됩니다.</b>
+            <br />
+            <br />
+            또한, 신청 예약을 등록하면 표출되는 <b>면책조항</b>을 꼭 확인하시기 바랍니다.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button variant='contained' onClick={() => setIsGuideOpen(false)}>
             닫기
           </Button>
         </DialogActions>
