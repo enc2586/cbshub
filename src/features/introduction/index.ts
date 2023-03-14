@@ -1,3 +1,4 @@
 import ReveilleGuide from './components/ReveilleGuide'
 import WorkflowGuide from './components/WorkflowGuide'
-export { ReveilleGuide, WorkflowGuide }
+import BookGuide from './components/BooksGuide'
+export { ReveilleGuide, WorkflowGuide, BookGuide }

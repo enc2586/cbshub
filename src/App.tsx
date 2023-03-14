@@ -32,9 +32,11 @@ import Books from 'pages/Books'
 import { BookInfo } from 'features/books'
 import ReveilleIntroduction from 'pages/ReveilleIntroduction'
 import WorkflowIntroduction from 'pages/WorkflowIntroduction'
+import BookIntroduction from 'pages/BooksIntroduction'
 
 function App() {
-  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
+  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(true)
+  // const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | undefined>(undefined)
   React.useEffect(() => {
     if (isDarkTheme !== undefined) {
       store.set('darkTheme', isDarkTheme)
@@ -44,13 +46,13 @@ function App() {
 
   const [theme, setTheme] = React.useState(darkTheme)
 
-  React.useEffect(() => {
-    if (!store.has('darkTheme')) {
-      store.set('darkTheme', true)
-    }
+  // React.useEffect(() => {
+  //   if (!store.has('darkTheme')) {
+  //     store.set('darkTheme', true)
+  //   }
 
-    setIsDarkTheme(store.get('darkTheme'))
-  }, [])
+  //   setIsDarkTheme(store.get('darkTheme'))
+  // }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -69,7 +71,7 @@ function App() {
                 <Route path='' element={<Introduction />} />
                 <Route path='reveille' element={<ReveilleIntroduction />} />
                 <Route path='workflow' element={<WorkflowIntroduction />} />
-                <Route path='book' element={<Introduction />} />
+                <Route path='book' element={<BookIntroduction />} />
               </Route>
 
               <Route path='reveille' element={<AuthRequired />}>

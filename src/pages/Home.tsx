@@ -18,6 +18,7 @@ import CloudIcon from '@mui/icons-material/Cloud'
 import FmdGoodIcon from '@mui/icons-material/FmdGood'
 import BookIcon from '@mui/icons-material/Book'
 import Meal from 'components/Meal'
+import { TimeTable } from 'features/TimeTable'
 // import Meal from 'components/Meal'
 
 function Home() {
@@ -31,7 +32,10 @@ function Home() {
       <Box m={-2}>
         <Grid container spacing={2} direction='row-reverse'>
           <Grid item xs={12} md={4}>
-            <Meal />
+            <Stack spacing={2}>
+              <Meal />
+              {/* <TimeTable grade={3} classNo={2} /> */}
+            </Stack>
           </Grid>
           <Grid item xs={12} md={8}>
             <Stack spacing={2}>
