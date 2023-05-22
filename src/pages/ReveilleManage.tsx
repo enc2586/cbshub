@@ -482,8 +482,9 @@ function ReveilleManagement() {
                             hour12: false,
                             timeZone: 'Asia/Seoul',
                           })
-                          const secondaryText =
-                            item.userName + ' · ' + formatter.format(item.appliedOn)
+                          const secondaryText = userData?.authority.includes('administrator')
+                            ? item.userName + ' · ' + formatter.format(item.appliedOn)
+                            : formatter.format(item.appliedOn)
                           return (
                             <ListItem disablePadding key={index}>
                               <ListItemButton onClick={handleMusicToggle(index)}>

@@ -221,7 +221,8 @@ function Workflow() {
       setTeacher(null)
       setApplyStep(0)
       setWorkflowTitle('')
-      toast.success('신청에 성공했습니다')
+      toast.success('예약 목록에 추가했습니다.')
+      toast('신청은 평일 13시에 진행됩니다. 자세한 내용은 서비스 소개 탭을 확인하세요.')
     }
   }
 

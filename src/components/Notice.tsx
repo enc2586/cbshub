@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Paper,
 } from '@mui/material'
 import store from 'store2'
 
@@ -14,38 +15,38 @@ function Notice() {
   const [isNoticeOpen, setIsNoticeOpen] = React.useState(false)
 
   React.useEffect(() => {
-    if (!store.has('readNotice1')) {
-      store.set('readNotice1', false)
+    if (!store.has('readNotice2')) {
+      store.set('readNotice2', false)
     }
 
-    setIsNoticeOpen(!store.get('readNotice1'))
+    setIsNoticeOpen(!store.get('readNotice2'))
   }, [])
 
   const handleNoticeClose = () => {
     setIsNoticeOpen(false)
-    store.set('readNotice1', true)
+    store.set('readNotice2', true)
   }
 
   return (
     <Dialog open={isNoticeOpen} onClose={() => setIsNoticeOpen(false)}>
-      <DialogTitle>CBSHUB 업데이트 및 계정 삭제 안내</DialogTitle>
+      <DialogTitle>긴급 공지 - 본관동 개방 대응</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          안녕하십니까 사용자 여러분!
+          선요약:
+          <br />
+          <i>호환성을 위해 기존의 예약은 전부 삭제되었습니다. 알맞은 특별실로 다시 신청해주세요.</i>
           <br />
           <br />
-          겨울방학 동안 서비스가 업데이트되었으며, 시스템 이관 작업으로 인해 모든 사용자 계정이
-          삭제되었음을 알려드립니다. <br />
-          <br />
-          <b>서비스를 계속 사용하려면 계정을 다시 등록해 주시기 바랍니다.</b> 여러분의 개인 데이터와
-          로그인 세부 정보를 포함한 이전 계정 정보가 보안상의 이유로 삭제되었으며, 서비스에
-          접근하려면 새 계정을 만들어야 합니다.
+          본관동이 개방됨에 따라 추가/삭제된 특별실이 많습니다. 이에 혼선을 피하고자 05월 22일 17시
+          40분 기준, 기존의 예약들을 일괄 삭제했습니다. 이용자 여러분께서는 다시 알맞은 특별실로
+          예약을 신청해주시기 바랍니다. 불편을 드려 죄송합니다.
           <br />
           <br />
-          이용에 불편을 드려 죄송합니다.
+          아울러, 특별실 예약 신청 페이지에 표출되는 특별실 목록은 매일 00시경 캐싱(받아오기)하기에
+          실시간으로 업데이트되지 않을 수 있는 점 양해 부탁드립니다.
           <br />
           <br />
-          CBSHUB 관리자 최홍제
+          감사합니다.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
