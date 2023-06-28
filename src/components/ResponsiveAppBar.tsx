@@ -72,7 +72,7 @@ function ResponsiveAppBar({
           >
             <Stack direction='row' alignItems='center'>
               <DirectionsRunSharpIcon sx={{ mr: 1, color: 'white' }} />
-              <Typography
+              {/* <Typography
                 variant='h6'
                 noWrap
                 sx={{
@@ -82,9 +82,10 @@ function ResponsiveAppBar({
                   textDecoration: 'none',
                 }}
               >
-                CBS
-              </Typography>
-              <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}>
+                CBSHUB
+              </Typography> */}
+              {/* <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}> */}
+              <Paper elevation={0} sx={{ backgroundColor: '#ffffff' }}>
                 <Typography
                   variant='h6'
                   noWrap
@@ -96,7 +97,7 @@ function ResponsiveAppBar({
                     textDecoration: 'none',
                   }}
                 >
-                  HUB
+                  CBSHUB
                 </Typography>
               </Paper>
             </Stack>
@@ -163,7 +164,7 @@ function ResponsiveAppBar({
             <Button disableRipple onClick={() => navigate('/')} sx={{ mr: 1 }}>
               <Stack direction='row' alignItems='center'>
                 <DirectionsRunSharpIcon sx={{ mr: 1, color: 'white' }} />
-                <Typography
+                {/* <Typography
                   variant='h6'
                   noWrap
                   sx={{
@@ -173,9 +174,10 @@ function ResponsiveAppBar({
                     textDecoration: 'none',
                   }}
                 >
-                  CBS
-                </Typography>
-                <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}>
+                  CBSHUB
+                </Typography> */}
+                <Paper elevation={0} sx={{ backgroundColor: '#ffffff' }}>
+                  {/* <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}> */}
                   <Typography
                     variant='h6'
                     noWrap
@@ -187,7 +189,7 @@ function ResponsiveAppBar({
                       textDecoration: 'none',
                     }}
                   >
-                    HUB
+                    CBSHUB
                   </Typography>
                 </Paper>
               </Stack>

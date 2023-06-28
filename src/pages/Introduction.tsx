@@ -33,7 +33,7 @@ function Introduction() {
               <Box sx={{ backgroundColor: 'black', p: 1, pl: 2, borderRadius: 1 }}>
                 <Stack direction='row' alignItems='center'>
                   <DirectionsRunSharpIcon sx={{ mr: 1, color: 'white' }} />
-                  <Typography
+                  {/* <Typography
                     variant='h6'
                     noWrap
                     sx={{
@@ -44,8 +44,8 @@ function Introduction() {
                     }}
                   >
                     CBS
-                  </Typography>
-                  <Paper elevation={0} sx={{ backgroundColor: '#f7971d' }}>
+                  </Typography> */}
+                  <Paper elevation={0} sx={{ backgroundColor: '#ffffff' }}>
                     <Typography
                       variant='h6'
                       noWrap
@@ -57,7 +57,7 @@ function Introduction() {
                         textDecoration: 'none',
                       }}
                     >
-                      HUB
+                      CBSHUB
                     </Typography>
                   </Paper>
                 </Stack>
