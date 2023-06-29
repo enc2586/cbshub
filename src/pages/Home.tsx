@@ -26,9 +26,9 @@ function Home() {
 
   return (
     <Stack spacing={2}>
-      <Alert severity='warning'>
+      {/* <Alert severity='warning'>
         [내 계정] 메뉴는 아직 완성되지 않았습니다. 양해 부탁드립니다!
-      </Alert>
+      </Alert> */}
       <Box m={-2}>
         <Grid container spacing={2} direction='row-reverse'>
           <Grid item xs={12} md={4}>
