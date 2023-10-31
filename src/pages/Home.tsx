@@ -19,6 +19,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood'
 import BookIcon from '@mui/icons-material/Book'
 import Meal from 'components/Meal'
 import { TimeTable } from 'features/TimeTable'
+import { Forum } from '@mui/icons-material'
 // import Meal from 'components/Meal'
 
 function Home() {
@@ -45,19 +46,17 @@ function Home() {
                   <Box m={-2}>
                     <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 3 }}>
                       <Grid item xs={1}>
-                        <Badge color='error' badgeContent='NEW' sx={{ width: '100%' }}>
-                          <Button
-                            size='large'
-                            variant='contained'
-                            fullWidth
-                            startIcon={<FmdGoodIcon />}
-                            onClick={() => {
-                              navigate('/workflow')
-                            }}
-                          >
-                            특별실 신청 예약
-                          </Button>
-                        </Badge>
+                        <Button
+                          size='large'
+                          variant='contained'
+                          fullWidth
+                          startIcon={<FmdGoodIcon />}
+                          onClick={() => {
+                            navigate('/workflow')
+                          }}
+                        >
+                          특별실 신청 예약
+                        </Button>
                       </Grid>
                       <Grid item xs={1}>
                         <Button
@@ -120,6 +119,26 @@ function Home() {
                   <Typography variant='h5'>교내 생활 관련</Typography>
                   <Box m={-2}>
                     <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 3 }}>
+                      <Grid item xs={1}>
+                        <Badge color='error' badgeContent='NEW!' sx={{ width: '100%' }}>
+                          <Button
+                            size='large'
+                            variant='outlined'
+                            fullWidth
+                            startIcon={<Forum />}
+                            endIcon={<OpenInNewIcon />}
+                            onClick={() => {
+                              window.open(
+                                'https://open.kakao.com/o/gbYXULPf',
+                                '_blank',
+                                'noreferrer',
+                              )
+                            }}
+                          >
+                            또담 오픈채팅
+                          </Button>
+                        </Badge>
+                      </Grid>
                       <Grid item xs={1}>
                         <Button
                           size='large'
@@ -214,20 +233,6 @@ function Home() {
                           }}
                         >
                           학사일정
-                        </Button>
-                      </Grid>
-                      <Grid item xs={1}>
-                        <Button
-                          size='large'
-                          variant='outlined'
-                          fullWidth
-                          startIcon={<LocalLibraryIcon />}
-                          endIcon={<OpenInNewIcon />}
-                          onClick={() => {
-                            window.open('https://classroom.google.com/', '_blank', 'noreferrer')
-                          }}
-                        >
-                          구글 클래스룸
                         </Button>
                       </Grid>
                       <Grid item xs={1}>
