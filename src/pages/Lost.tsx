@@ -9,9 +9,9 @@ function Lost() {
 
   return (
     <ErrorWindow
-      title='길을 잃었어요...'
+      title='404 NOT FOUND'
       image={lostImage}
-      imageCaption='출처: 봇치 더 록! | 사진 제공: 방희*'
+      imageCaption='출처: 봇치 더 록!'
       primaryAdornment={
         <Stack direction='row' alignItems='center' spacing={1}>
           <Paper sx={{ p: 0.5 }}>
@@ -19,7 +19,7 @@ function Lost() {
               <b>{location.pathname}</b>
             </Typography>
           </Paper>
-          <Typography>같은 페이지는 존재하지 않아요.</Typography>
+          <Typography>페이지를 찾을 수 없어요.</Typography>
         </Stack>
       }
     />

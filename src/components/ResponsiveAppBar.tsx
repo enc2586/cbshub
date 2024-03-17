@@ -251,7 +251,7 @@ function ResponsiveAppBar({
                 </ListItemIcon>
                 <Typography textAlign='center'>로그아웃</Typography>
               </MenuItem>
-              <MenuItem
+              {/* <MenuItem
                 onClick={() => {
                   navigate('/myaccount')
                   handleCloseUserMenu()
@@ -261,7 +261,7 @@ function ResponsiveAppBar({
                   <ManageAccountsIcon fontSize='small' />
                 </ListItemIcon>
                 <Typography textAlign='center'>내 계정</Typography>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem
                 onClick={() => {
                   setIsDarkTheme(!isDarkTheme)

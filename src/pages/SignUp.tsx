@@ -25,10 +25,11 @@ import { collection, doc, getDocs, query, serverTimestamp, setDoc, where } from 
 import { FirebaseError } from 'firebase/app'
 import { useNavigate } from 'react-router-dom'
 import PrivacyAgreement from 'components/PrivacyAgreement'
-import { getSidVer } from 'utils/getSidVer'
+import { getInfoVersion } from 'utils/getSidVer'
 
 function SignUp() {
   const navigate = useNavigate()
+  const infoVersion = getInfoVersion()
 
   const newSignUp = async () => {
     const signUpToastId = toast.loading('정보 확인 중이에요')
@@ -43,6 +44,7 @@ function SignUp() {
       where('grade', '==', studentData.grade),
       where('classNo', '==', studentData.classNo),
       where('numberInClass', '==', studentData.number),
+      where('infoVersion', '==', infoVersion),
     )
     const duplicates = await getDocs(duplicateVerifyQueue)
     if (duplicates.docs.length > 0) {
@@ -80,7 +82,7 @@ function SignUp() {
       sex: values.sex,
       reveillesApplied: 0,
       agreedTermsAt: serverTimestamp(),
-      sid_ver: getSidVer(),
+      infoVersion,
     }
 
     await setDoc(newUserRef, newUserData)

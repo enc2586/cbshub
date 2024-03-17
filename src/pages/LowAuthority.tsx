@@ -8,7 +8,7 @@ function LowAuthority({ needed }: { needed?: authority[] }) {
     <ErrorWindow
       title='권한이 부족해요...'
       image={lowAuthorityImage}
-      imageCaption='출처: 스파이 패밀리 | 사진 제공: 최헌*'
+      imageCaption='출처: 스파이 패밀리'
       primaryAdornment={
         <Stack>
           <Stack direction='row' alignItems='center' spacing={1}>

@@ -14,7 +14,7 @@ export type UserData = {
     id: string
     password: string
   }
-  sid_ver: number
+  infoVersion: number
 }
 
 export type UserDataForSignUp = Omit<UserData, 'agreedTermsAt'> & { agreedTermsAt: FieldValue }

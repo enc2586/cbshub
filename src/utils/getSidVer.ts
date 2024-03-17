@@ -1,5 +1,5 @@
-export function getSidVer() {
-  const date = new Date()
+export function getInfoVersion(date?: Date) {
+  if (!date) date = new Date()
 
   const year = date.getFullYear()
   const month = date.getMonth() + 1

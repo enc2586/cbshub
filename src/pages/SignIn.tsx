@@ -140,7 +140,7 @@ function SignIn() {
                 신규 가입
               </Button>
               <Button onClick={() => navigate('/passwordreset')} sx={{ width: '50%' }}>
-                패스워드 분실
+                패스워드 재설정
               </Button>
             </Stack>
           </Stack>
