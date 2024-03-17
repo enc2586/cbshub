@@ -25,6 +25,7 @@ import { collection, doc, getDocs, query, serverTimestamp, setDoc, where } from 
 import { FirebaseError } from 'firebase/app'
 import { useNavigate } from 'react-router-dom'
 import PrivacyAgreement from 'components/PrivacyAgreement'
+import { getSidVer } from 'utils/getSidVer'
 
 function SignUp() {
   const navigate = useNavigate()
@@ -79,6 +80,7 @@ function SignUp() {
       sex: values.sex,
       reveillesApplied: 0,
       agreedTermsAt: serverTimestamp(),
+      sid_ver: getSidVer(),
     }
 
     await setDoc(newUserRef, newUserData)

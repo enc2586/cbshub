@@ -27,15 +27,11 @@ function Home() {
 
   return (
     <Stack spacing={2}>
-      {/* <Alert severity='warning'>
-        [내 계정] 메뉴는 아직 완성되지 않았습니다. 양해 부탁드립니다!
-      </Alert> */}
       <Box m={-2}>
         <Grid container spacing={2} direction='row-reverse'>
           <Grid item xs={12} md={4}>
             <Stack spacing={2}>
               <Meal />
-              {/* <TimeTable grade={3} classNo={2} /> */}
             </Stack>
           </Grid>
           <Grid item xs={12} md={8}>
@@ -45,32 +41,6 @@ function Home() {
                   <Typography variant='h5'>제공하는 서비스</Typography>
                   <Box m={-2}>
                     <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 3 }}>
-                      <Grid item xs={1}>
-                        <Button
-                          size='large'
-                          variant='contained'
-                          fullWidth
-                          startIcon={<FmdGoodIcon />}
-                          onClick={() => {
-                            navigate('/workflow')
-                          }}
-                        >
-                          특별실 신청 예약
-                        </Button>
-                      </Grid>
-                      <Grid item xs={1}>
-                        <Button
-                          size='large'
-                          variant='contained'
-                          fullWidth
-                          startIcon={<BookIcon />}
-                          onClick={() => {
-                            navigate('/book')
-                          }}
-                        >
-                          정보도서 대출
-                        </Button>
-                      </Grid>
                       <Grid item xs={1}>
                         <Button
                           size='large'
@@ -120,26 +90,6 @@ function Home() {
                   <Box m={-2}>
                     <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 3 }}>
                       <Grid item xs={1}>
-                        <Badge color='error' badgeContent='NEW!' sx={{ width: '100%' }}>
-                          <Button
-                            size='large'
-                            variant='outlined'
-                            fullWidth
-                            startIcon={<Forum />}
-                            endIcon={<OpenInNewIcon />}
-                            onClick={() => {
-                              window.open(
-                                'https://open.kakao.com/o/gbYXULPf',
-                                '_blank',
-                                'noreferrer',
-                              )
-                            }}
-                          >
-                            또담 오픈채팅
-                          </Button>
-                        </Badge>
-                      </Grid>
-                      <Grid item xs={1}>
                         <Button
                           size='large'
                           variant='outlined'
@@ -147,7 +97,7 @@ function Home() {
                           startIcon={<SchoolIcon />}
                           endIcon={<OpenInNewIcon />}
                           onClick={() => {
-                            window.open('https://www.cbshself.kr/', '_blank', 'noreferrer')
+                            window.open('https://cbsh.edu-set.com/', '_blank', 'noreferrer')
                           }}
                         >
                           학생관리시스템
@@ -233,20 +183,6 @@ function Home() {
                           }}
                         >
                           학사일정
-                        </Button>
-                      </Grid>
-                      <Grid item xs={1}>
-                        <Button
-                          size='large'
-                          variant='outlined'
-                          fullWidth
-                          startIcon={<CloudIcon />}
-                          endIcon={<OpenInNewIcon />}
-                          onClick={() => {
-                            window.open('https://www.cbshai.kr/', '_blank', 'noreferrer')
-                          }}
-                        >
-                          교내 GPU서버
                         </Button>
                       </Grid>
                     </Grid>

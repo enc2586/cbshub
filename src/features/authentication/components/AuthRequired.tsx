@@ -10,24 +10,18 @@ function AuthRequired({ authority }: { authority?: authority[] }) {
   const userData = useUserData()
   const location = useLocation()
 
-  if (userData === undefined) {
-    return <ValidateAuth />
-  } else if (userData === null) {
-    return <Navigate to='/signin' state={{ from: location }} replace />
-  } else {
-    if (authority !== undefined) {
-      if (
-        userData.authority.includes('administrator') ||
-        authority.every((elem) => userData.authority.includes(elem))
-      ) {
-        return <Outlet />
-      } else {
-        return <LowAuthority needed={authority} />
-      }
-    } else {
-      return <Outlet />
-    }
-  }
+  if (userData === undefined) return <ValidateAuth />
+
+  if (userData === null) return <Navigate to='/signin' state={{ from: location }} replace />
+
+  if (
+    authority &&
+    !userData.authority.includes('administrator') &&
+    !authority.every((elem) => userData.authority.includes(elem))
+  )
+    return <LowAuthority needed={authority} />
+
+  return <Outlet />
 }
 
 export default AuthRequired

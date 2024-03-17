@@ -107,7 +107,7 @@ function Introduction() {
                       navigate('/introduction/workflow')
                     }}
                   >
-                    특별실 신청 예약에 대해
+                    (구)특별실 신청 예약에 대해
                   </Button>
                 </Grid>
                 <Grid item xs={1}>
@@ -119,7 +119,7 @@ function Introduction() {
                       navigate('/introduction/book')
                     }}
                   >
-                    정보도서 대출에 대해
+                    (구)정보도서 대출에 대해
                   </Button>
                 </Grid>
               </Grid>

@@ -28,8 +28,6 @@ import DirectionsRunSharpIcon from '@mui/icons-material/DirectionsRunSharp'
 const pages: { [k: string]: string } = {
   '서비스 소개': '/introduction',
   기상음악: '/reveille',
-  '특별실 신청 예약': '/workflow',
-  '정보도서 대출': '/book',
   개인정보처리방침: '/privacy',
 }
 
