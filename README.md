@@ -1,5 +1,7 @@
 # cbshub
 
+(2025년 5월에 eduset과 통합 예정입니다. 코드는 더 이상 유지보수되지 않습니다.)
+
 [![visit cbshub](https://img.shields.io/badge/visit-cbshub-purple.svg?style=flat-square)](https://cbshub.pages.dev)
 
 충북과학고등학교의 편리한 기상음악 신청을 위해 2022년 4월경부터 개시된 서비스입니다.
